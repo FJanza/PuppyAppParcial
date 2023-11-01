@@ -6,11 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity2">
 
-    <TextView
-        android:id="@+id/pruebaText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="61dp" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/navigationHost"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/bottom_nav"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="80dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:menu="@menu/bottom_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

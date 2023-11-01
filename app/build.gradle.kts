@@ -44,6 +44,7 @@ dependencies {
     val lifecycle_version = "2.5.1"
     val activity_version = "1.6.1"
     val room_version = "2.5.0"
+    val nav_version = "2.5.3"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -87,6 +88,10 @@ dependencies {
 
     //Drawer
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
+
+    //navgraph
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

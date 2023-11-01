@@ -5,24 +5,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity2 : AppCompatActivity() {
-    lateinit var nombre2: TextView
-
+    private lateinit var bottomNavView: BottomNavigationView
+    private lateinit var navHostFrag: NavHostFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        // Encuentra el TextView en tu layout usando su ID
-        nombre2 = findViewById<TextView>(R.id.pruebaText)
+        bottomNavView = findViewById(R.id.bottomNav)
+        navHostFrag = supportFragmentManager.findFragmentById(R.id.navigationHost) as NavHostFragment
 
-        // Obtén los valores del Intent
-        val nombre = intent.getStringExtra("nombre")
-        val imagenUrl = intent.getStringExtra("imagenUrl")
-        Log.d("MainActivity2", "Nombre: $nombre, Imagen URL: $imagenUrl")
-        // Asigna el valor al TextView
-        nombre2.text = nombre
+        setupBottomNav()
+    }
+
+    private fun setupBottomNav () {
+        NavigationUI.setupWithNavController(bottomNavView,navHostFrag.navController)
     }
 
 }
