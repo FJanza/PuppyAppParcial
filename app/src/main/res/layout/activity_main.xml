@@ -50,7 +50,7 @@
 
 
             <EditText
-                android:id="@+id/editTextText3"
+                android:id="@+id/txtNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
@@ -67,10 +67,10 @@
                 android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Numero de Telefono"
-                android:inputType="text" />
+                android:inputType="phone" />
 
             <EditText
-                android:id="@+id/FotoDePerfil"
+                android:id="@+id/txtImagen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"

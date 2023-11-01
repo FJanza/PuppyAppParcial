@@ -1,33 +1,46 @@
 package com.example.puppyappparcial.activities
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.databinding.ActivityMainBinding
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var submit: Button
+    lateinit var txtNombre: EditText
+    lateinit var txtImagen: EditText
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        // Declaring and initializing the ImageView
-        val imageView = findViewById<ImageView>(R.id.imageView)
-
-        // Declaring executor to parse the URL
-        val executor = Executors.newSingleThreadExecutor()
-
-        // Once the executor parses the URL
-        // and receives the image, handler will load it
-        // in the ImageView
-        val handler = Handler(Looper.getMainLooper())
-
-        // Initializing the image
-        var image: Bitmap? = null
-
-
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
+    override fun onStart() {
+        super.onStart()
+
+        submit = binding.btnSubmit
+        txtImagen = binding.txtImagen
+        txtNombre = binding.txtNombre
+
+        submit.setOnClickListener {
+            val nombre = txtNombre.text.toString()
+            val imagenUrl = txtImagen.text.toString()
+            val intent = Intent(this, MainActivity2::class.java)
+            intent.putExtra("nombre", nombre)
+            intent.putExtra("imagenUrl", imagenUrl)
+            startActivity(intent)
+            finish()
+        }
+
+    }
+}
