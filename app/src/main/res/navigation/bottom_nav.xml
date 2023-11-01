@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/home2">
+
+    <fragment
+        android:id="@+id/adoption"
+        android:name="com.example.puppyappparcial.fragments.Adoption"
+        android:label="fragment_adoption"
+        tools:layout="@layout/fragment_adoption" />
+    <fragment
+        android:id="@+id/favourites"
+        android:name="com.example.puppyappparcial.fragments.Favourites"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites" />
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.example.puppyappparcial.fragments.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/publication"
+        android:name="com.example.puppyappparcial.fragments.Publication"
+        android:label="fragment_publication"
+        tools:layout="@layout/fragment_publication" />
+</navigation>
