@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PuppyAppParcial</string>
+    <string name="dog_api_base_url">https://dog.ceo/api/breeds/</string>
 </resources>

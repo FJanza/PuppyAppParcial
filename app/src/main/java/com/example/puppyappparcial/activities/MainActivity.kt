@@ -1,7 +1,8 @@
-package com.example.puppyappparcial
+package com.example.puppyappparcial.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.puppyappparcial.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
