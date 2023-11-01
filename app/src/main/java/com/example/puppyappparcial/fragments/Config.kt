@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.puppyappparcial.R
+import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +25,7 @@ class Config : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    lateinit var v: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +39,33 @@ class Config : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_config, container, false)
+        v = inflater.inflate(R.layout.fragment_config, container, false)
+        return v
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val switch = v.findViewById<SwitchCompat>(R.id.darkModeOnOff)
+        val sharedPreferences = activity?.getSharedPreferences("Mode", Context.MODE_PRIVATE) // Utiliza el contexto de la actividad
+        val editor = sharedPreferences?.edit()
+        val nightMode = sharedPreferences?.getBoolean("night", false)
+
+        if (nightMode == true) {
+            switch.isChecked = true
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+
+        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (!isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                editor?.putBoolean("night", false)
+                editor?.apply()
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                editor?.putBoolean("night", true)
+                editor?.apply()
+            }
+        }
     }
 
     companion object {

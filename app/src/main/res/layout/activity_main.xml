@@ -43,7 +43,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_bold"
-
                 android:text="Adopción de Perritos"
                 android:textAlignment="center"
                 android:textSize="24sp" />

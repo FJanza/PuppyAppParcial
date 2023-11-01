@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.puppyappparcial.fragments.listFragment"
+        android:label="list_fragment"
+        tools:layout="@layout/list_fragment">
+        <action
+            android:id="@+id/action_listFragment_to_viewItem"
+            app:destination="@id/viewItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewItem"
+        android:name="com.example.puppyappparcial.fragments.ViewItem"
+        android:label="view_item_info"
+        tools:layout="@layout/view_item_info" >
+        <argument
+            android:name="perro"
+            app:argType="com.example.puppyappparcial.recycled_view.Perro" />
+    </fragment>
+</navigation>
