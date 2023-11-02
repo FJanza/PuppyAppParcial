@@ -12,8 +12,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import com.example.puppyappparcial.R
 import com.example.puppyappparcial.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.Executors
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var submit: Button
