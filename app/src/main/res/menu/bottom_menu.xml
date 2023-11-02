@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home2"
+        android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/home_icon"
         android:title="Home" />
     <item
-        android:id="@+id/favourites"
+        android:id="@+id/fav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/favoritos_icon"
@@ -20,7 +20,7 @@
         android:icon="@drawable/adopcion_icon"
         android:title="Adopcion" />
     <item
-        android:id="@+id/publication"
+        android:id="@+id/publi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/publicacion_icon"
