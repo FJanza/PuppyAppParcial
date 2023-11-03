@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.puppyappparcial.R
 import com.example.puppyappparcial.data.GetDogsUseCase
+import com.example.puppyappparcial.databinding.ActivityMain2Binding
 import com.example.puppyappparcial.databinding.ActivityMainBinding
 import com.example.puppyappparcial.domain.Dog
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,19 +25,26 @@ import javax.inject.Inject
 class MainActivity2 : AppCompatActivity() {
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var navHostFrag: NavHostFragment
+    private lateinit var binding: ActivityMain2Binding
 
     private val dogViewModel: DogViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        binding = ActivityMain2Binding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        bottomNavView = findViewById(R.id.bottomNav)
+        bottomNavView = binding.bottomNav
         navHostFrag = supportFragmentManager.findFragmentById(R.id.navigationHost) as NavHostFragment
 
         setupBottomNav()
 
         dogViewModel.onCreate()
+
+        dogViewModel.dogModel.observe(this, Observer {
+            binding.breedName.text = it.message.random()
+
+        })
     }
 
     private fun setupBottomNav () {

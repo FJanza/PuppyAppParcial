@@ -1,6 +1,6 @@
 package com.example.puppyappparcial.data
 
-import com.example.puppyappparcial.data.model.DogModel
+import com.example.puppyappparcial.data.model.DogModelResponse
 import com.example.puppyappparcial.data.network.DogService
 import com.example.puppyappparcial.domain.Dog
 import com.example.puppyappparcial.domain.toDomain
@@ -10,8 +10,8 @@ class DogRepository @Inject constructor(
     private val remote: DogService
 ) {
 
-    suspend fun getAllDogsFromApi(): List<Dog>{
-        val response: List<DogModel> = remote.getAllDogs()
-        return response.map { it.toDomain() }
+    suspend fun getAllDogsFromApi(): Dog {
+        val response: DogModelResponse = remote.getAllDogs()
+        return response.toDomain()
     }
 }

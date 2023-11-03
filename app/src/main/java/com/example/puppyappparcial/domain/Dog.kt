@@ -1,7 +1,6 @@
 package com.example.puppyappparcial.domain
 
-import com.example.puppyappparcial.data.model.DogModel
+import com.example.puppyappparcial.data.model.DogModelResponse
 
-data class Dog(val breeds: List<String>, val status: String)
-
-fun DogModel.toDomain() = Dog(breeds, status)
+data class Dog(val message: List<String>, val status: String)
+fun DogModelResponse.toDomain() = Dog(breeds, status)
