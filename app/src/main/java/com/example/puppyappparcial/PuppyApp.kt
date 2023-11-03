@@ -2,9 +2,8 @@ package com.example.puppyappparcial
 
 import android.app.Application
 import com.example.puppyappparcial.core.Configuration
-import dagger.hilt.android.HiltAndroidApp
 
-@HiltAndroidApp
+
 class PuppyApp:Application() {
 
 
