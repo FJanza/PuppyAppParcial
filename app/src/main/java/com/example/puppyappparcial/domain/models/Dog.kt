@@ -1,4 +1,4 @@
-package com.example.puppyappparcial.domain
+package com.example.puppyappparcial.domain.models
 
 import com.example.puppyappparcial.data.model.DogModelResponse
 

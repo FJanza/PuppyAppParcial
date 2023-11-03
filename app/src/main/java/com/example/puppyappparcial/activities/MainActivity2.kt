@@ -1,25 +1,15 @@
 package com.example.puppyappparcial.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.puppyappparcial.R
-import com.example.puppyappparcial.data.GetDogsUseCase
 import com.example.puppyappparcial.databinding.ActivityMain2Binding
-import com.example.puppyappparcial.databinding.ActivityMainBinding
-import com.example.puppyappparcial.domain.Dog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity2 : AppCompatActivity() {
