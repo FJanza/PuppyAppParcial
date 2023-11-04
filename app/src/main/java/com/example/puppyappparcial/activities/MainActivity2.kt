@@ -1,17 +1,23 @@
 package com.example.puppyappparcial.activities
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
+import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.puppyappparcial.R
@@ -35,6 +41,8 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var navigationView: NavigationView
     private lateinit var bottomNavigationButton: BottomAppBar
     private lateinit var actionBackItem: MenuItem
+    private lateinit var nombre: String
+    private lateinit var imagenUrl: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -42,6 +50,10 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         toolbar.inflateMenu(R.menu.side_menu)
+
+        nombre = intent.getStringExtra("nombre").toString()
+        imagenUrl = intent.getStringExtra("imagenUrl").toString()
+
         drawerLayout = findViewById(R.id.drawer_layout)
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -86,7 +98,6 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         fragmentManager = supportFragmentManager
         openFragment(Home())
 
-        // Encuentra el elemento de acción de retroceso por su ID
     }
 
 
@@ -128,6 +139,17 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private fun openFragment(fragment: Fragment) {
          transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.commit()
+    }
+
+    private fun openFragmentWithArguments(fragment: Fragment) {
+        val bundle = Bundle()
+        bundle.putString("nombre", nombre)
+        bundle.putString("imagenUrl", imagenUrl)
+        fragment.arguments = bundle
+
+        val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
         transaction.commit()
     }
