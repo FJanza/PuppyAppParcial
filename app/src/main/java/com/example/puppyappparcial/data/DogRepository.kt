@@ -35,4 +35,12 @@ class DogRepository @Inject constructor(
         publicationDao.insertPublication(publication)
     }
 
+    suspend fun updateOwner(id : Int, owner: String) {
+        publicationDao.updateOwner(owner, id)
+    }
+
+    suspend fun toggleFavorite(id : Int) {
+        publicationDao.toggleFavorite(id)
+    }
+
 }

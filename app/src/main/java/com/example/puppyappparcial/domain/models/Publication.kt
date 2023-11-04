@@ -14,7 +14,8 @@ data class Publication(
     val weigth:Float,
     val location:String,
     val imgs:List<String>,
-    val owner:String
+    val owner:String,
+    val favorite: Boolean
 ) fun PublicationEntity.toDomain() = Publication(
     id,
     breed,
@@ -26,5 +27,6 @@ data class Publication(
     weigth,
     location,
     imgs,
-    owner
+    owner,
+    favorite
 )
