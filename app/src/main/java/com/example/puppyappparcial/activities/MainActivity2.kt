@@ -1,22 +1,17 @@
 package com.example.puppyappparcial.activities
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.widget.TextView
-import androidx.annotation.NonNull
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.puppyappparcial.R
@@ -26,6 +21,7 @@ import com.example.puppyappparcial.fragments.Favourites
 import com.example.puppyappparcial.fragments.Home
 import com.example.puppyappparcial.fragments.Profile
 import com.example.puppyappparcial.fragments.Publication
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -37,31 +33,34 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var toolbar: Toolbar
     private lateinit var transaction: FragmentTransaction
     private lateinit var navigationView: NavigationView
+    private lateinit var bottomNavigationButton: BottomAppBar
+    private lateinit var actionBackItem: MenuItem
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
+        toolbar.inflateMenu(R.menu.side_menu)
         drawerLayout = findViewById(R.id.drawer_layout)
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationButton = findViewById(R.id.bottomAppBar)
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawerLayout.addDrawerListener(toggle);
+        drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         navigationView = findViewById(R.id.navigation_drawer)
         navigationView.setNavigationItemSelectedListener(this)
+        navigationView.setCheckedItem(R.id.action_back)
+        actionBackItem = toolbar.menu.findItem(R.id.action_back)
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigationView.setBackground(null)
+        bottomNavigationView.background = null
 
-        bottomNavigationView.setOnItemSelectedListener{ item ->
-            val itemId = item.itemId
-            when (itemId) {
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.home -> {
                     openFragment(Home())
                     return@setOnItemSelectedListener true
@@ -78,24 +77,18 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                     openFragment(Favourites())
                     return@setOnItemSelectedListener true
                 }
-                else -> false
+                else -> {
+                    return@setOnItemSelectedListener false
+                }
             }
         }
 
-        fragmentManager = supportFragmentManager;
-        openFragment(Home());
+        fragmentManager = supportFragmentManager
+        openFragment(Home())
 
+        // Encuentra el elemento de acción de retroceso por su ID
     }
 
-    private fun setupUpSideNav(navController: NavController) {
-        navigationView.setupWithNavController(navController)
-
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
-
-        navController.addOnDestinationChangedListener { _, _, _ ->
-            supportActionBar?.setHomeAsUpIndicator(R.drawable.hamburger)
-        }
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -107,28 +100,36 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         return false
     }
 
-    override fun onNavigationItemSelected(@NonNull item: MenuItem): Boolean {
-        var itemId = item.getItemId();
-        if(itemId == R.id.perfil){
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val itemId = item.itemId
+        if (itemId == R.id.perfil) {
+            toolbar.title = "Perfil"
+            bottomNavigationButton.visibility = View.GONE
             openFragment(Profile())
-        } else if(itemId == R.id.config) {
+
+            // Oculta el elemento de retroceso
+        } else if (itemId == R.id.config) {
+            toolbar.title = "Configuracion"
+            bottomNavigationButton.visibility = View.GONE
             openFragment(Config())
+
+            // Oculta el elemento de retroceso
+        } else if (itemId == R.id.action_back) {
+            toolbar.title = ""
+            bottomNavigationButton.visibility = View.VISIBLE
+            openFragment(Home())
+            bottomNavigationView.selectedItemId = R.id.home
+            drawerLayout.closeDrawer(GravityCompat.START)
         }
+
         drawerLayout.closeDrawer(GravityCompat.START)
-        return true;
+        return true
     }
 
-    override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed();
-        }
-    }
     private fun openFragment(fragment: Fragment) {
-         transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
-        transaction.commit();
+         transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.commit()
     }
 
 }
