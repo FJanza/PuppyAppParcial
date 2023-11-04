@@ -1,7 +1,7 @@
 package com.example.puppyappparcial.data
 
-import com.example.puppyappparcial.data.database.dao.DogDao
-import com.example.puppyappparcial.data.database.entities.DogEntity
+import com.example.puppyappparcial.data.database.dao.PublicationDao
+import com.example.puppyappparcial.data.database.entities.PublicationEntity
 import com.example.puppyappparcial.data.model.BreedModelResponse
 import com.example.puppyappparcial.data.model.SubBreedResponse
 import com.example.puppyappparcial.data.network.DogService
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class DogRepository @Inject constructor(
     private val remote: DogService,
-    private val dogDao: DogDao
+    private val publicationDao: PublicationDao
 ) {
 
     suspend fun getAllBreedsFromApi(): Breed {
@@ -27,7 +27,7 @@ class DogRepository @Inject constructor(
     }
 
     suspend fun getAllPublicationsFromDataBase(): List<Publication> {
-        val response: List<DogEntity> = dogDao.getAllDogs()
+        val response: List<PublicationEntity> = publicationDao.getAllPublications()
         return response.map { it.toDomain() }
     }
 }

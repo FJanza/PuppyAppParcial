@@ -2,7 +2,7 @@ package com.example.puppyappparcial.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.puppyappparcial.data.database.DogDataBase
+import com.example.puppyappparcial.data.database.PublicationDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,12 +18,12 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideRoom (@ApplicationContext context:Context) =
-        Room.databaseBuilder(context,DogDataBase::class.java, DOG_DATABASE_NAME)
+        Room.databaseBuilder(context,PublicationDataBase::class.java, DOG_DATABASE_NAME)
             .fallbackToDestructiveMigration()
             .build()
 
     @Singleton
     @Provides
-    fun provideDogDao (db: DogDataBase) = db.getDogDao()
+    fun provideDogDao (db: PublicationDataBase) = db.getPublicationDao()
 
 }

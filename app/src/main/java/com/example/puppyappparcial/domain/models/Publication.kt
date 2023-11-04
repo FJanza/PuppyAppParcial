@@ -1,6 +1,6 @@
 package com.example.puppyappparcial.domain.models
 
-import com.example.puppyappparcial.data.database.entities.DogEntity
+import com.example.puppyappparcial.data.database.entities.PublicationEntity
 
 
 data class Publication(
@@ -15,7 +15,7 @@ data class Publication(
     val location:String,
     val imgs:List<String>,
     val owner:String
-) fun DogEntity.toDomain() = Publication(
+) fun PublicationEntity.toDomain() = Publication(
     id,
     breed,
     subBreed,
