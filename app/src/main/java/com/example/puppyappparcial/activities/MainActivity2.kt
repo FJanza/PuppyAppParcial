@@ -109,31 +109,28 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         fragmentManager = supportFragmentManager
         openFragment(Home())
 
-        bottomNavView = binding.bottomNav
-        navHostFrag = supportFragmentManager.findFragmentById(R.id.navigationHost) as NavHostFragment
+        //setupBottomNav()
 
-        setupBottomNav()
+        //dogViewModel.onCreate()
 
-        dogViewModel.onCreate()
-
-        dogViewModel.dogModel.observe(this, Observer {
-            binding.breedName.text = it.message.random()
-
-            breed = binding.breedName.text as String
-
-            dogViewModel.getSubBreed(breed)
-            dogViewModel.subBreedModel.observe(this, Observer {
-                if (!it.message.isNullOrEmpty()) {
-                    for (i in 0 .. it.message.size - 1){
-                        val subRazaActual = binding.subBreed.text
-                        val nuevoSubRaza = if (subRazaActual.isEmpty()) it.message[i]
-                        else "$subRazaActual\n${it.message[i]}"
-
-                        binding.subBreed.text = nuevoSubRaza
-                    }
-                }
-            })
-        })
+//        dogViewModel.dogModel.observe(this, Observer {
+//            binding.breedName.text = it.message.random()
+//
+//            breed = binding.breedName.text as String
+//
+//            dogViewModel.getSubBreed(breed)
+//            dogViewModel.subBreedModel.observe(this, Observer {
+//                if (!it.message.isNullOrEmpty()) {
+//                    for (i in 0 .. it.message.size - 1){
+//                        val subRazaActual = binding.subBreed.text
+//                        val nuevoSubRaza = if (subRazaActual.isEmpty()) it.message[i]
+//                        else "$subRazaActual\n${it.message[i]}"
+//
+//                        binding.subBreed.text = nuevoSubRaza
+//                    }
+//                }
+//            })
+//        })
 
     }
 
