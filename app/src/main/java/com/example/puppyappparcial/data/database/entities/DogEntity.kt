@@ -14,7 +14,7 @@ data class DogEntity(
     @ColumnInfo(name = "age") val age:Int,
     @ColumnInfo(name = "sex") val sex:String,
     @ColumnInfo(name = "description") val description:String,
-    @ColumnInfo(name = "weigth") val weigth:String,
+    @ColumnInfo(name = "weigth") val weigth:Float,
     //TODO cambiar a enum ubicaciones
     @ColumnInfo(name = "location") val location:String,
     @ColumnInfo(name = "imgs") val imgs:List<String>,
