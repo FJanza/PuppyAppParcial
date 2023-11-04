@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.PuppyAppParcial" parent="Base.Theme.PuppyAppParcial" />
+    <style name="FontColor"><item name="android:textColor">@color/black</item></style>
 </resources>
