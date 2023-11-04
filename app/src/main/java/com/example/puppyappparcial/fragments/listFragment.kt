@@ -24,7 +24,7 @@ class listFragment : Fragment(), OnViewItemClickedListener {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
 
-    private lateinit var contactoListAdapter: PerroListAdapter
+    private lateinit var perroListAdapter: PerroListAdapter
 
     companion object {
         fun newInstance() = listFragment()
@@ -38,7 +38,7 @@ class listFragment : Fragment(), OnViewItemClickedListener {
         v =  inflater.inflate(R.layout.fragment_home, container, false)
 
 
-        recPerros = v.findViewById(R.id.rec_contactos)
+        recPerros = v.findViewById(R.id.rec_perros)
 
         return v
     }
@@ -61,10 +61,10 @@ class listFragment : Fragment(), OnViewItemClickedListener {
 
         recPerros.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
-        contactoListAdapter = PerroListAdapter(perros, this)
+        perroListAdapter = PerroListAdapter(perros, this)
 
         recPerros.layoutManager = linearLayoutManager
-        recPerros.adapter = contactoListAdapter
+        recPerros.adapter = perroListAdapter
     }
 
     override fun onViewItemDetail(perro: Perro) {
