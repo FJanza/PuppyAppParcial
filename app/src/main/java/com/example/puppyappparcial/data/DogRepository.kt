@@ -30,4 +30,9 @@ class DogRepository @Inject constructor(
         val response: List<PublicationEntity> = publicationDao.getAllPublications()
         return response.map { it.toDomain() }
     }
+
+    suspend fun insertPublication(publication : PublicationEntity) {
+        publicationDao.insertPublication(publication)
+    }
+
 }
