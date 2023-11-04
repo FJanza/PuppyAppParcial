@@ -1,14 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lay_mascotas_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Home">
+    tools:context=".fragments.listFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="413dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="1dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?android:attr/homeAsUpIndicator">
 
-</FrameLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="412dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+
+        <EditText
+            android:id="@+id/Buscador"
+            android:layout_width="300dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="79dp"
+            android:background="@drawable/radius_form"
+            android:backgroundTint="#F6F6F6"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Buscador"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:singleLine="true"
+            android:textColorHint="#C9C8C8" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="38dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="78dp"
+            android:background="@drawable/radius_form"
+            android:backgroundTint="#817396"
+            android:src="@android:drawable/ic_menu_search" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/rec_perros"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/TitleModoOscuro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Filtro"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec_perros"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
