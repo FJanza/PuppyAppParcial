@@ -2,14 +2,10 @@ package com.example.puppyappparcial.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -53,8 +49,12 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     private val dogViewModel: DogViewModel by viewModels()
     private var breed: String = ""
+    private lateinit var imageUrl: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main2)
+        nombre = intent.getStringExtra("nombre").toString()
+        imageUrl = intent.getStringExtra("imagenUrl").toString()
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -62,8 +62,6 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         setSupportActionBar(toolbar)
         toolbar.inflateMenu(R.menu.side_menu)
 
-        nombre = intent.getStringExtra("nombre").toString()
-        imagenUrl = intent.getStringExtra("imagenUrl").toString()
 
         drawerLayout = findViewById(R.id.drawer_layout)
 
@@ -150,7 +148,7 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         if (itemId == R.id.perfil) {
             toolbar.title = "Perfil"
             bottomNavigationButton.visibility = View.GONE
-            openFragment(Profile())
+            openFragmentWithArguments(Profile())
 
             // Oculta el elemento de retroceso
         } else if (itemId == R.id.config) {
@@ -180,7 +178,7 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private fun openFragmentWithArguments(fragment: Fragment) {
         val bundle = Bundle()
         bundle.putString("nombre", nombre)
-        bundle.putString("imagenUrl", imagenUrl)
+        bundle.putString("imagenUrl", imageUrl)
         fragment.arguments = bundle
 
         val transaction = fragmentManager.beginTransaction()
