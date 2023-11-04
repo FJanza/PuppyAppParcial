@@ -8,39 +8,64 @@
     tools:context=".ProfileFragment">
 
 
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="184dp"
-        android:layout_height="121dp"
-        android:layout_marginStart="100dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="199dp"
+        android:layout_height="190dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="100dp"
-        android:background="@drawable/profile_image"
-        android:src="@drawable/tipo"
+        app:cardCornerRadius="100dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/btnChangeImage"
-        android:layout_width="188dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:text="Subir foto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTintMode="screen"
+            android:scaleType="fitXY"
+            tools:ignore="MissingConstraints" />
+    </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="104dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="20dp"
-        android:text="Nombre"
-        android:textAlignment="center"
-        android:textSize="26dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/nombre"
+            android:textAlignment="center"
+            android:textSize="26sp"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/editTextImageUrl"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:layout_margin="10dp"
+            android:autofillHints=""
+            android:hint="@string/ingresa_la_url_de_la_imagen"
+            android:inputType="textUri"
+            android:textColorHint="#8D6E63"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <Button
+            android:id="@+id/btnChangeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:text="@string/subir_foto" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

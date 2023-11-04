@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.URLUtil
+import android.widget.Button
+import android.widget.EditText
+import com.bumptech.glide.Glide
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import com.example.puppyappparcial.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,19 +42,43 @@ class Profile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        val imageView = view.findViewById<ImageView>(R.id.imageView2)
+        val textView = view.findViewById<TextView>(R.id.textView)
+        val editTextImageUrl = view.findViewById<EditText>(R.id.editTextImageUrl)
+        val btnChangeImage = view.findViewById<Button>(R.id.btnChangeImage)
+
+        val nombre = arguments?.getString("nombre")
+        val imagenUrl = arguments?.getString("imagenUrl")
+
+        // Verifica que los valores no sean nulos antes de intentar establecerlos
+        if (!nombre.isNullOrEmpty()) {
+            textView.text = nombre
+        }
+
+        if (!imagenUrl.isNullOrEmpty()) {
+            Glide.with(requireContext())
+                .load(imagenUrl)
+                .into(imageView)
+        }
+
+        btnChangeImage.setOnClickListener {
+            val imagenUrl = editTextImageUrl.text.toString()
+            if (URLUtil.isValidUrl(imagenUrl)) {
+                Glide.with(requireContext())
+                    .load(imagenUrl)
+                    .into(imageView)
+                editTextImageUrl.text.clear()
+            } else {
+                Toast.makeText(requireContext(), "URL inválida", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        return view
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Profile.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             Profile().apply {
