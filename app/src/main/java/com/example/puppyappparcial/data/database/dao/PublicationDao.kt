@@ -17,6 +17,7 @@ interface PublicationDao {
 
     @Query("Update PublicationTable set owner = :owner where id = :id")
     suspend fun updateOwner(owner: String, id: Int)
+
     @Query("Update PublicationTable set favorite = not favorite where id = :id")
     suspend fun toggleFavorite(id: Int)
 }

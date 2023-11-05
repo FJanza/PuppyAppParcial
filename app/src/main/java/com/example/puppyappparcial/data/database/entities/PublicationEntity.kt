@@ -17,7 +17,8 @@ data class PublicationEntity(
     @ColumnInfo(name = "weigth") val weigth:Float,
     //TODO cambiar a enum ubicaciones
     @ColumnInfo(name = "location") val location:String,
-    @ColumnInfo(name = "imgs") val imgs:List<String>,
+    @ColumnInfo(name = "imgs") val imgs: String,
     @ColumnInfo(name = "owner") val owner:String,
     @ColumnInfo(name = "favorite") val favorite:Boolean,
+    @ColumnInfo(name = "adopted") val adopted:Boolean
 )

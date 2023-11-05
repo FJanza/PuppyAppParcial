@@ -5,13 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.domain.models.Publication
 import com.example.puppyappparcial.recyclerView.listener.OnViewItemClickedListener
-import com.example.puppyappparcial.recyclerView.Perro
-import com.example.puppyappparcial.recyclerView.adapter.PerroListAdapter
+import com.example.puppyappparcial.recyclerView.adapter.PublicationAdapter
 import com.google.android.material.snackbar.Snackbar
 
 class Home : Fragment(), OnViewItemClickedListener {
@@ -21,11 +22,11 @@ class Home : Fragment(), OnViewItemClickedListener {
 
 
     //TODO NO usar modelo perro, usar modelo publicacion de rooms
-    var perros : MutableList<Perro> = ArrayList()
+    var publications : MutableList<Publication> = ArrayList()
 
     private lateinit var linearLayoutManager: LinearLayoutManager
 
-    private lateinit var perroListAdapter: PerroListAdapter
+    private lateinit var publicationAdapter: PublicationAdapter
 
     companion object {
         fun newInstance() = Home()
@@ -45,14 +46,22 @@ class Home : Fragment(), OnViewItemClickedListener {
     override fun onStart() {
         super.onStart()
 
-        //Creo la Lista Dinamica
-        for (i in 1..10) {
-            perros.add(Perro("Pedro",26, Perro.Constants.cursoA, ""))
-            perros.add(Perro("Rodolfo",30, Perro.Constants.cursoA, ""))
-            perros.add(Perro("Emilio",28, Perro.Constants.cursoB, ""))
-            perros.add(Perro("Luis",37, Perro.Constants.cursoB, ""))
-            perros.add(Perro("Carlos", 42, Perro.Constants.cursoC, ""))
-            perros.add(Perro("David",21, Perro.Constants.cursoC, ""))
+        for (i in 1..10){
+            publications.add(com.example.puppyappparcial.domain.models.Publication(
+                1,
+                "Golden",
+                "Retriever",
+                "Perro",
+                5,
+                "Macho",
+                "Buen Perro",
+                30F,
+                "Bs As",
+                "https://images.dog.ceo/breeds/bouvier/n02106382_1365.jpg",
+                "Yo",
+                false,
+                false
+                ))
         }
 
         //Configuración Obligatoria
@@ -60,16 +69,17 @@ class Home : Fragment(), OnViewItemClickedListener {
 
         recPerros.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
-        perroListAdapter = PerroListAdapter(perros, this)
+        publicationAdapter = PublicationAdapter(publications, this)
 
         recPerros.layoutManager = linearLayoutManager
-        recPerros.adapter = perroListAdapter
+        recPerros.adapter = publicationAdapter
     }
 
-    override fun onViewItemDetail(perro: Perro) {
-        val action = listFragmentDirections.actionListFragmentToViewItem(perro)
-        this.findNavController().navigate(action)
-        Snackbar.make(view,perro.nombre, Snackbar.LENGTH_SHORT).show()
+    override fun onViewItemDetail(publication: com.example.puppyappparcial.domain.models.Publication) {
+        //val action = listFragmentDirections.actionListFragmentToViewItem(perro)
+        //this.findNavController().navigate(action)
+        //Snackbar.make(view,perro.nombre, Snackbar.LENGTH_SHORT).show()
+        Toast.makeText(context, "Detalle", Toast.LENGTH_SHORT).show()
     }
 
 
