@@ -6,22 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
 import com.example.puppyappparcial.domain.models.Publication
 import com.example.puppyappparcial.recyclerView.listener.OnViewItemClickedListener
 import com.example.puppyappparcial.recyclerView.adapter.PublicationAdapter
-import com.google.android.material.snackbar.Snackbar
 
 class Home : Fragment(), OnViewItemClickedListener {
 
     private lateinit var view: View
     private lateinit var recPerros : RecyclerView
 
-
-    //TODO NO usar modelo perro, usar modelo publicacion de rooms
     var publications : MutableList<Publication> = ArrayList()
 
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -38,7 +34,7 @@ class Home : Fragment(), OnViewItemClickedListener {
     ): View? {
         view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        recPerros = view.findViewById(R.id.rec_perros)
+        recPerros = view.findViewById(R.id.rec_favorites)
 
         return view
     }

@@ -5,7 +5,7 @@
     android:id="@+id/lay_mascotas_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.listFragment" >
+    tools:context=".fragments.Home" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
@@ -70,7 +70,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_perros"
+        android:id="@+id/rec_favorites"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
