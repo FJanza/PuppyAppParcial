@@ -1,9 +1,12 @@
-package com.example.puppyappparcial.recycled_view
+package com.example.puppyappparcial.recyclerView.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.recyclerView.listener.OnViewItemClickedListener
+import com.example.puppyappparcial.recyclerView.Perro
+import com.example.puppyappparcial.recyclerView.holder.PerroHolder
 
 class PerroListAdapter(
     private val perroListo: MutableList<Perro>,

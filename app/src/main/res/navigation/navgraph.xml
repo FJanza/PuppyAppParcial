@@ -21,6 +21,6 @@
         tools:layout="@layout/view_item_info" >
         <argument
             android:name="perro"
-            app:argType="com.example.puppyappparcial.recycled_view.Perro" />
+            app:argType="com.example.puppyappparcial.recyclerView.Perro" />
     </fragment>
 </navigation>

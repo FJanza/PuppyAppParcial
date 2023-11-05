@@ -1,4 +1,4 @@
-package com.example.puppyappparcial.recycled_view
+package com.example.puppyappparcial.recyclerView.holder
 
 import android.view.View
 import androidx.cardview.widget.CardView

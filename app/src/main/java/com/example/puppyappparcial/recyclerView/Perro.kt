@@ -1,4 +1,4 @@
-package com.example.puppyappparcial.recycled_view
+package com.example.puppyappparcial.recyclerView
 
 import android.os.Parcel
 import android.os.Parcelable
