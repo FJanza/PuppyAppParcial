@@ -18,6 +18,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.R.font.poppins_bold
 import com.example.puppyappparcial.databinding.ActivityMain2Binding
 import com.example.puppyappparcial.fragments.Adoption
 import com.example.puppyappparcial.fragments.Config
@@ -59,6 +60,10 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         setContentView(binding.root)
 
         toolbar = findViewById(R.id.toolbar)
+
+        //toolbar.setTitleTextAppearance(this, poppins_bold)
+        toolbar.title = ""
+        toolbar.setTitleTextAppearance(this, R.style.ToolbarTheme)
         setSupportActionBar(toolbar)
         toolbar.inflateMenu(R.menu.side_menu)
 
@@ -83,18 +88,22 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
+                    toolbar.title = ""
                     openFragment(Home())
                     return@setOnItemSelectedListener true
                 }
                 R.id.adoption -> {
+                    toolbar.title = "Adopciones"
                     openFragment(Adoption())
                     return@setOnItemSelectedListener true
                 }
                 R.id.publi -> {
+                    toolbar.title = "Publicación"
                     openFragment(Publication())
                     return@setOnItemSelectedListener true
                 }
                 R.id.fav -> {
+                    toolbar.title = "Mis Favoritos"
                     openFragment(Favourites())
                     return@setOnItemSelectedListener true
                 }
