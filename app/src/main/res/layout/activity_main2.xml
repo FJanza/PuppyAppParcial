@@ -13,8 +13,8 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:navGraph="@navigation/bottom_nav"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="80dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
