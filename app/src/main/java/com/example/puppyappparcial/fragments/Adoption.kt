@@ -5,56 +5,67 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.domain.models.Publication
+import com.example.puppyappparcial.recyclerView.adapter.PublicationAdapter
+import com.example.puppyappparcial.recyclerView.listener.OnViewItemClickedListener
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class Adoption : Fragment(), OnViewItemClickedListener{
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Adoption.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Adoption : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var view: View
+    private lateinit var recycleAdoptions: RecyclerView
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var publicationAdapter: PublicationAdapter
+    private var publications: MutableList<Publication> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_adoption, container, false)
+        view = inflater.inflate(R.layout.fragment_adoption, container, false)
+
+        recycleAdoptions = view.findViewById(R.id.rec_adoptions)
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Adoption.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Adoption().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onStart() {
+        super.onStart()
+
+        for (i in 1..10){
+            publications.add(com.example.puppyappparcial.domain.models.Publication(
+                1,
+                "Golden",
+                "Retriever",
+                "Perro",
+                5,
+                "Macho",
+                "Buen Perro",
+                30F,
+                "Bs As",
+                "https://images.dog.ceo/breeds/bouvier/n02106382_1365.jpg",
+                "Yo",
+                false,
+                false
+            ))
+        }
+
+        //Configuración Obligatoria
+        requireActivity()
+
+        recycleAdoptions.setHasFixedSize(true)
+        linearLayoutManager = LinearLayoutManager(context)
+        publicationAdapter = PublicationAdapter(publications, this)
+
+        recycleAdoptions.layoutManager = linearLayoutManager
+        recycleAdoptions.adapter = publicationAdapter
     }
+
+    override fun onViewItemDetail(publication: Publication) {
+        Toast.makeText(context, "Adopciones", Toast.LENGTH_SHORT).show()
+    }
+
 }
