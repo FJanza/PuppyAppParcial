@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ItemPerroBinding"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:backgroundTintMode="add"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/dogImage"
+            android:layout_width="395dp"
+            android:layout_height="224dp"
+            android:layout_marginBottom="2dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nombrePerro"
+            style="@style/FontColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="294dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="TextView"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/raza"
+            style="@style/FontColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="44dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="TextView"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dogImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.157"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nombrePerro"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="TextSizeCheck" />
+
+        <TextView
+            android:id="@+id/subraza"
+            style="@style/FontColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="250dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="TextView"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dogImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.662"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/raza"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="TextSizeCheck" />
+
+        <ImageView
+            android:id="@+id/patitasRaza"
+            android:layout_width="25dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintBottom_toTopOf="@+id/subraza"
+            app:layout_constraintEnd_toStartOf="@+id/raza"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/dogImage"
+            app:layout_constraintTop_toBottomOf="@+id/nombrePerro"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/patitas" />
+
+        <ImageView
+            android:id="@+id/patitasSubRaza"
+            android:layout_width="25dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/dogImage"
+            app:layout_constraintEnd_toStartOf="@+id/subraza"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/dogImage"
+            app:layout_constraintTop_toBottomOf="@+id/patitasRaza"
+            app:layout_constraintVertical_bias="0.095"
+            app:srcCompat="@drawable/patitas" />
+
+        <TextView
+            android:id="@+id/edad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="160dp"
+            android:text="Edad"
+            app:layout_constraintBottom_toBottomOf="@+id/dogImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.423"
+            app:layout_constraintStart_toStartOf="@+id/dogImage"
+            app:layout_constraintTop_toTopOf="@+id/dogImage"
+            app:layout_constraintVertical_bias="0.511" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="50dp"
+            android:text="/"
+            app:layout_constraintBottom_toBottomOf="@+id/dogImage"
+            app:layout_constraintEnd_toEndOf="@+id/dogImage"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="@+id/dogImage"
+            app:layout_constraintTop_toTopOf="@+id/dogImage"
+            app:layout_constraintVertical_bias="0.511" />
+
+        <TextView
+            android:id="@+id/genero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="40dp"
+            android:text="Genero"
+            app:layout_constraintBottom_toBottomOf="@+id/dogImage"
+            app:layout_constraintEnd_toEndOf="@+id/dogImage"
+            app:layout_constraintStart_toStartOf="@+id/dogImage"
+            app:layout_constraintTop_toTopOf="@+id/dogImage"
+            app:layout_constraintVertical_bias="0.511" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
