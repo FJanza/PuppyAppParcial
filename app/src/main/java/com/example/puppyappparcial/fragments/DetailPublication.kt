@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.puppyappparcial.R
 import com.example.puppyappparcial.domain.models.Publication
 
@@ -54,7 +56,11 @@ class DetailPublication : Fragment() {
         val descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
         val ownerTextView = view.findViewById<TextView>(R.id.ownerTextView)
         val buttonToCall = view?.findViewById<ImageButton>(R.id.buttonToCall)
-        val dogImageView = view.findViewById<ImageView>(R.id.ownerImage)
+        val ownerImageView = view.findViewById<ImageView>(R.id.ownerImage)
+        val dogPublicationImage = view.findViewById<ImageView>(R.id.dogPublicationImage)
+        val adoptionButton = view.findViewById<Button>(R.id.adoptButton)
+
+
 
         if (dogInformation != null) {
             nameTextView.text =  "${dogInformation?.name}"
@@ -65,6 +71,20 @@ class DetailPublication : Fragment() {
             descriptionTextView.text = "${dogInformation?.description}"
             ownerTextView.text = "${dogInformation?.owner}"
 
+            val imageUrlOwner = dogInformation?.ownerImgUrl
+            val imageUrlDog = dogInformation?.imgs
+
+
+            if (imageUrlOwner != null) {
+                Glide.with(requireContext())
+                    .load(imageUrlOwner)
+                    .into(ownerImageView)
+            }
+            if (imageUrlDog != null) {
+                Glide.with(requireContext())
+                    .load(imageUrlDog)
+                    .into(dogPublicationImage)
+            }
         }
 
 
@@ -75,6 +95,15 @@ class DetailPublication : Fragment() {
                 val intent = Intent(Intent.ACTION_DIAL)
                 intent.data = Uri.parse("tel:$phoneNumber")
                 startActivity(intent)
+            }
+        }
+
+        adoptionButton?.setOnClickListener {
+            val ownerName = arguments?.getString("nombre")
+            if (!ownerName.isNullOrEmpty()) {
+                dogInformation?.owner = ownerName
+                dogInformation?.adopted = true
+
             }
         }
 
