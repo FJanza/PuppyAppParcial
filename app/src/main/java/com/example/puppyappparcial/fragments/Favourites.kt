@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
 import com.example.puppyappparcial.domain.models.Publication
-import com.example.puppyappparcial.recyclerView.adapter.PublicationAdapter
-import com.example.puppyappparcial.recyclerView.listener.OnViewItemClickedListener
+import com.example.puppyappparcial.recyclerViewPublications.adapter.PublicationAdapter
+import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
 
 
 class Favourites : Fragment(), OnViewItemClickedListener {

@@ -9,5 +9,26 @@
         android:id="@+id/home"
         android:name="com.example.puppyappparcial.fragments.Home"
         android:label="list_fragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_filters"
+            app:destination="@id/filters"
+            app:popUpTo="@id/home"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="filters"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/filters"
+        android:name="com.example.puppyappparcial.fragments.Filters"
+        android:label="fragment_filters"
+        tools:layout="@layout/fragment_filters" >
+        <action
+            android:id="@+id/action_filters_to_home"
+            app:destination="@id/home"
+            app:popUpTo="@id/filters"
+            app:popUpToInclusive="true" />
+
+    </fragment>
 </navigation>

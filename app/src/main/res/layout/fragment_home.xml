@@ -18,41 +18,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/Buscador"
             android:layout_width="271dp"
             android:layout_height="48dp"
             android:background="@drawable/radius_form"
             android:backgroundTint="#F6F6F6"
             android:fontFamily="@font/poppins_regular"
-            android:hint="Buscador"
             android:inputType="text"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="#C9C8C8"
+            app:defaultQueryHint="@string/Buscador"
+            app:iconifiedByDefault="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.405"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.245" />
+            app:layout_constraintVertical_bias="0.245"
+            app:searchIcon="@drawable/search_icon" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="44dp"
-            android:layout_height="39dp"
-            android:background="@drawable/radius_form"
-            android:backgroundTint="#817396"
-            android:src="@android:drawable/ic_menu_search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.858"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/Buscador"
-            app:layout_constraintVertical_bias="0.015"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+<!--        <ImageButton-->
+<!--            android:id="@+id/imageButton"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="47dp"-->
+<!--            android:background="@drawable/radius_form"-->
+<!--            android:backgroundTint="#817396"-->
+<!--            android:src="@android:drawable/ic_menu_search"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.858"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/Buscador"-->
+<!--            app:layout_constraintVertical_bias="0.015"-->
+<!--            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />-->
 
         <TextView
             android:id="@+id/TitleModoOscuro"
@@ -67,6 +69,20 @@
             app:layout_constraintHorizontal_bias="0.156"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <TextView
+            android:id="@+id/filter"
+            android:layout_width="70dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="192dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:minHeight="48dp"
+            android:onClick="navigateToMoreFilters"
+            android:text="Mas Filtros"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/TitleModoOscuro" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -78,6 +94,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+<!--    <androidx.fragment.app.FragmentContainerView-->
+<!--        android:id="@+id/nav_host_fragment"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:navGraph="@navigation/navgraph"-->
+<!--        android:visibility="invisible"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

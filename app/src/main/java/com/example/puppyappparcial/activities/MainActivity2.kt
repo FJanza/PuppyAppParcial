@@ -20,9 +20,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.puppyappparcial.R
 import com.example.puppyappparcial.R.font.poppins_bold
 import com.example.puppyappparcial.databinding.ActivityMain2Binding
+import com.example.puppyappparcial.domain.GetBreedsUseCase
+import com.example.puppyappparcial.domain.GetSubBreedUseCase
 import com.example.puppyappparcial.fragments.Adoption
 import com.example.puppyappparcial.fragments.Config
 import com.example.puppyappparcial.fragments.Favourites
+import com.example.puppyappparcial.fragments.Filters
 import com.example.puppyappparcial.fragments.Home
 import com.example.puppyappparcial.fragments.Profile
 import com.example.puppyappparcial.fragments.Publication
@@ -30,9 +33,13 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import com.google.android.material.navigation.NavigationView
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity2 @Inject constructor(
+    //private val getBreedsUseCase: GetBreedsUseCase,
+    //private val  getSubBreedUseCase: GetSubBreedUseCase
+): AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -51,6 +58,7 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     private val dogViewModel: DogViewModel by viewModels()
     private var breed: String = ""
     private lateinit var imageUrl: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -114,7 +122,16 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
 
         fragmentManager = supportFragmentManager
-        openFragment(Home())
+        openFragment(Home())//getBreedsUseCase, getSubBreedUseCase))
+
+//        val homeToFilters = intent.getStringExtra("FilterFragment")
+//
+//        if (homeToFilters != null){
+//            val frag = Class.forName(homeToFilters).newInstance() as Fragment
+//            supportFragmentManager.beginTransaction()
+//                .replace(R.id.fragment_container, frag)
+//                .commit()
+//        }
 
         //setupBottomNav()
 
@@ -169,7 +186,7 @@ class MainActivity2 : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         } else if (itemId == R.id.action_back) {
             toolbar.title = ""
             bottomNavigationButton.visibility = View.VISIBLE
-            openFragment(Home())
+            openFragment(Home())//getBreedsUseCase, getSubBreedUseCase))
             bottomNavigationView.selectedItemId = R.id.home
             drawerLayout.closeDrawer(GravityCompat.START)
         }
