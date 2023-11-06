@@ -16,30 +16,13 @@ import com.example.puppyappparcial.R
 import com.example.puppyappparcial.domain.models.Publication
 
 class DetailPublication : Fragment() {
-    private var dogInformation: Publication? = Publication(
-        id = 1,
-        breed = "Golden",
-        subBreed =  "",
-        name = "Patroclo",
-        age = 10,
-        sex = "Macho",
-        description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit lacus vel elementum mattis. Quisque vitae bibendum lacus. Suspendisse lacinia, orci egestas efficitur ultrices, risus risus sollicitudin erat, vel tempor ex sem vitae ipsum. Nunc viverra tortor eu felis sollicitudin fermentum. Nullam dictum dapibus nibh et auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent euismod egestas leo efficitur aliquam. Mauris mauris felis, dapibus sed ipsum sed, egestas bibendum orci. Nam mattis tristique est sed tempus. Aliquam et bibendum risus, a pharetra ante. Mauris dictum placerat vestibulum. Donec turpis lacus, cursus et justo sed, dignissim pellentesque mauris. Aliquam nec tellus tristique, congue lacus eget, faucibus nisl.",
-        weight = 15.10f,
-        location = "Buenos Aires",
-        imgs = "https://images.dog.ceo/breeds/cockapoo/Guri8.jpg",
-        owner = "Matias Gutierrez",
-        ownerImgUrl = "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-        ownerNumber = 1137636787,
-        favorite = false,
-        adopted = false,
-        checked = false
-    )
+    var dogInformation: Publication? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // arguments?.let {
-        //            selectedDog = it.getSerializable("selectedDog") as? Dog
-        //        }
+        arguments?.let {
+            dogInformation = it.getSerializable("selectedPublication") as? Publication
+        }
     }
 
     override fun onCreateView(

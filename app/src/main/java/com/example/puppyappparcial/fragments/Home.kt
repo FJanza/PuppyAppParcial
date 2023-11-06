@@ -82,10 +82,16 @@ class Home @Inject constructor(
 //    }
 
     override fun onViewItemDetail(publication: com.example.puppyappparcial.domain.models.Publication) {
-        //val action = listFragmentDirections.actionListFragmentToViewItem(perro)
-        //this.findNavController().navigate(action)
-        //Snackbar.make(view,perro.nombre, Snackbar.LENGTH_SHORT).show()
-        Toast.makeText(context, "Detalle", Toast.LENGTH_SHORT).show()
+        val detailPublicationFragment = DetailPublication()
+        val args = Bundle()
+        args.putSerializable("selectedPublication", publication)
+        detailPublicationFragment.arguments = args
+
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, detailPublicationFragment)
+        fragmentTransaction.addToBackStack(null) // Opcional, agrega a la pila de retroceso si lo deseas
+        fragmentTransaction.commit()
     }
 
     private fun addDefaultPublications(){

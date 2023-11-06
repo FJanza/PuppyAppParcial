@@ -1,6 +1,7 @@
 package com.example.puppyappparcial.domain.models
 
 import com.example.puppyappparcial.data.database.entities.PublicationEntity
+import java.io.Serializable
 
 
 data class Publication(
@@ -20,7 +21,9 @@ data class Publication(
     val favorite: Boolean,
     var adopted: Boolean,
     val checked: Boolean
-) fun PublicationEntity.toDomain() = Publication(
+) : Serializable
+
+fun PublicationEntity.toDomain() = Publication(
     id,
     breed,
     subBreed,
