@@ -49,6 +49,9 @@ class Favourites : Fragment(), OnViewItemClickedListener {
                 "Bs As",
                 "https://images.dog.ceo/breeds/bouvier/n02106382_1365.jpg",
                 "Yo",
+                "",
+                1145677678,
+                false,
                 false,
                 false
             ))

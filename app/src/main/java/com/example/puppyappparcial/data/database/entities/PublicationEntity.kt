@@ -19,6 +19,9 @@ data class PublicationEntity(
     @ColumnInfo(name = "location") val location:String,
     @ColumnInfo(name = "imgs") val imgs: String,
     @ColumnInfo(name = "owner") val owner:String,
+    @ColumnInfo(name = "ownerImgUrl") val ownerImgUrl: String,
+    @ColumnInfo(name = "ownerNumber") val ownerNumber:Int,
     @ColumnInfo(name = "favorite") val favorite:Boolean,
-    @ColumnInfo(name = "adopted") val adopted:Boolean
+    @ColumnInfo(name = "adopted") val adopted:Boolean,
+    @ColumnInfo(name = "checked") val checked:Boolean
 )
