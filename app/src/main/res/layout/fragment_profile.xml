@@ -28,11 +28,10 @@
             tools:ignore="MissingConstraints" />
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,32 +39,53 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="162dp"
+            android:layout_height="44dp"
             android:text="@string/nombre"
             android:textAlignment="center"
             android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.032"
             tools:ignore="TextSizeCheck" />
 
         <EditText
             android:id="@+id/editTextImageUrl"
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:layout_margin="10dp"
+            android:layout_width="341dp"
+            android:layout_height="51dp"
             android:autofillHints=""
+            android:background="@drawable/radius_form"
+            android:backgroundTint="#F6F6F6"
+            android:fontFamily="@font/poppins_regular"
             android:hint="@string/ingresa_la_url_de_la_imagen"
             android:inputType="textUri"
-            android:textColorHint="#8D6E63"
-            tools:ignore="VisualLintTextFieldSize" />
+            android:textColor="@color/black"
+            android:textColorHint="#C9C8C8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.163"
+            tools:ignore="VisualLintTextFieldSize"
+            android:paddingLeft="10dp"/>
 
         <Button
             android:id="@+id/btnChangeImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:text="@string/subir_foto" />
+            android:text="@string/subir_foto"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.314"
+            android:background="@drawable/radius_form"
+            android:fontFamily="@font/poppins_bold"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

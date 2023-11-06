@@ -67,7 +67,7 @@
                 android:textColorHint="#C9C8C8"/>
 
             <EditText
-                android:id="@+id/txtnumero"
+                android:id="@+id/txtNumero"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="40dp"
