@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
 import com.example.puppyappparcial.domain.models.Publication
-import com.example.puppyappparcial.recyclerViewPublications.adapter.PublicationAdapter
+import com.example.puppyappparcial.recyclerViewPublications.adapter.FavoriteAdapter
 import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
 
 
@@ -19,8 +19,9 @@ class Favourites : Fragment(), OnViewItemClickedListener {
     private lateinit var view: View
     private lateinit var recycleFavourites: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var publicationAdapter: PublicationAdapter
+    private lateinit var favoriteAdapter: FavoriteAdapter
     private var publications: MutableList<Publication> = ArrayList()
+    private var favoritePublications: MutableList<Publication> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,36 +37,56 @@ class Favourites : Fragment(), OnViewItemClickedListener {
     override fun onStart() {
         super.onStart()
 
-        for (i in 1..10){
-            publications.add(com.example.puppyappparcial.domain.models.Publication(
-                1,
-                "Golden",
-                "Retriever",
-                "Perro",
-                5,
-                "Macho",
-                "Buen Perro",
-                30F,
-                "Bs As",
-                "https://images.dog.ceo/breeds/bouvier/n02106382_1365.jpg",
-                "Yo",
-                false,
-                false
-            ))
-        }
+        addDefaultPublications()
 
         //Configuración Obligatoria
         requireActivity()
 
         recycleFavourites.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
-        publicationAdapter = PublicationAdapter(publications, this)
+        favoriteAdapter = FavoriteAdapter(publications, this)
+        favoritePublications = favoriteAdapter.getFavoritePublication()
+        favoriteAdapter.publications = favoritePublications
 
         recycleFavourites.layoutManager = linearLayoutManager
-        recycleFavourites.adapter = publicationAdapter
+        recycleFavourites.adapter = favoriteAdapter
     }
 
     override fun onViewItemDetail(publication: Publication) {
         Toast.makeText(context, "Favoritos", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun addDefaultPublications(){
+        publications.add(com.example.puppyappparcial.domain.models.Publication(
+            2,
+            "Papillon",
+            "",
+            "Luna",
+            3,
+            "Hembra",
+            " Luna es una papillon con un pelaje blanco, negro y marron. Disfrutan de jugar afuera.",
+            6F,
+            "Cordoba",
+            "https://images.dog.ceo/breeds/papillon/n02086910_4609.jpg",
+            "Maria",
+            true,
+            false
+        ))
+
+        publications.add(com.example.puppyappparcial.domain.models.Publication(
+            4,
+            "Komondor",
+            "",
+            "Coco",
+            6,
+            "Macho",
+            "Coco es un Komondor con un pelaje suave pero dificil de cuidar. Adora jugar en el parque con otros perros",
+            33F,
+            "Bs As",
+            "https://images.dog.ceo/breeds/komondor/n02105505_1657.jpg",
+            "Ana",
+            true,
+            false
+        ))
     }
 }

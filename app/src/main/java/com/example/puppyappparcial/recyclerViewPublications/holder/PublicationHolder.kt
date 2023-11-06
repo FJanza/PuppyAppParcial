@@ -1,6 +1,7 @@
 package com.example.puppyappparcial.recyclerViewPublications.holder
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -46,8 +47,15 @@ class PublicationHolder (v: View) : RecyclerView.ViewHolder(v) {
     }
 
     fun setFavorite(favorite: Boolean){
-        //val txt: TextView = view.findViewById(R.id.favorite)
-        //txt.text = favorite.toString()
+        val checked: ImageView = view.findViewById(R.id.favoriteChecked)
+        val notChecked: ImageView = view.findViewById(R.id.favoriteNotChecked)
+        if (favorite == true){
+            checked.visibility = View.VISIBLE
+            notChecked.visibility = View.GONE
+        } else {
+            notChecked.visibility = View.VISIBLE
+            checked.visibility = View.GONE
+        }
     }
 
     fun getCardLayout (): CardView {

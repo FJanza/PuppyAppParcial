@@ -10,7 +10,7 @@ import com.example.puppyappparcial.domain.models.Publication
 import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
 import com.example.puppyappparcial.recyclerViewPublications.holder.PublicationHolder
 
-class PublicationAdapter(
+open class PublicationAdapter(
     private var publications: MutableList<Publication>,
     private val onItemClick: OnViewItemClickedListener
 ) : RecyclerView.Adapter<PublicationHolder>(), Filterable {
@@ -28,11 +28,6 @@ class PublicationAdapter(
     override fun onBindViewHolder(holder: PublicationHolder, position: Int) {
 
         val publication = publications[position]
-        val imgTest = publication.imgs
-
-//        holder.setName(TextUtils.concat(perro.nombre, " (", perro.edad.toString(), ")").toString())
-//        holder.setCurso(perro.curso)
-//        holder.setOrden(position)
 
         if (publication != null){
             holder.bind(publication.imgs!!)
@@ -42,10 +37,6 @@ class PublicationAdapter(
             holder.setAge(publication.age!!)
             holder.setGender(publication.sex!!)
         }
-
-//        if (imgTest != null) {
-//            holder.bind(imgTest)
-//        }
 
         holder.getCardLayout().setOnClickListener{
             onItemClick.onViewItemDetail(publication)
@@ -65,9 +56,22 @@ class PublicationAdapter(
 
                     for (publication in publications) {
                         if (publication.breed.lowercase().contains(filterPattern)){
-                            filteredList.addAll(publications)
+                            filteredList.add(publication)
                         }
                     }
+
+                    if (filterPattern.isNotEmpty()) {
+                        for (publication in publications) {
+                            if (publication.subBreed != null && !publication.subBreed.toLowerCase().contains(filterPattern)){
+                                filteredList.remove(publication)
+                            }
+                        }
+                    }
+
+//                    for (publication in publications){
+//                        if (publication.location != null && publication.location.toLowerCase().contains(filterPattern))
+//                            filteredList.add(publication)
+//                    }
                 }
                 results.values = filteredList
                 results.count = filteredList.size

@@ -1,6 +1,5 @@
 package com.example.puppyappparcial.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,23 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
-import com.example.puppyappparcial.activities.MainActivity2
-import com.example.puppyappparcial.domain.GetBreedsUseCase
-import com.example.puppyappparcial.domain.GetSubBreedUseCase
 import com.example.puppyappparcial.domain.models.Publication
 import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
 import com.example.puppyappparcial.recyclerViewPublications.adapter.PublicationAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -48,7 +37,7 @@ class Home @Inject constructor(
     ): View? {
         view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        recPerros = view.findViewById(R.id.rec_favorites)
+        recPerros = view.findViewById(R.id.rec_home)
 
         return view
     }
@@ -128,7 +117,7 @@ class Home @Inject constructor(
             "Cordoba",
             "https://images.dog.ceo/breeds/papillon/n02086910_4609.jpg",
             "Maria",
-            false,
+            true,
             false
         ))
 
@@ -160,7 +149,7 @@ class Home @Inject constructor(
             "Bs As",
             "https://images.dog.ceo/breeds/komondor/n02105505_1657.jpg",
             "Ana",
-            false,
+            true,
             false
         ))
     }
