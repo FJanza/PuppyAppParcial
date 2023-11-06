@@ -13,7 +13,6 @@ import com.example.puppyappparcial.domain.models.Publication
 import com.example.puppyappparcial.recyclerViewPublications.adapter.FavoriteAdapter
 import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
 
-
 class Favourites : Fragment(), OnViewItemClickedListener {
 
     private lateinit var view: View

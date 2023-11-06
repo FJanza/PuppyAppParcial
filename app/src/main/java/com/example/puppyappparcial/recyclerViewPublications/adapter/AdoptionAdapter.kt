@@ -1,27 +1,27 @@
 package com.example.puppyappparcial.recyclerViewPublications.adapter
 
-import android.util.Log
 import com.example.puppyappparcial.domain.models.Publication
 import com.example.puppyappparcial.recyclerViewPublications.holder.PublicationHolder
 import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
 
-class FavoriteAdapter(
+class AdoptionAdapter (
     var publications: MutableList<Publication>,
     val onItemClick: OnViewItemClickedListener
 ) : PublicationAdapter(publications, onItemClick){
-    var favoritePublications: MutableList<Publication> = ArrayList()
+    var adoptedPublications: MutableList<Publication> = ArrayList()
 
-    fun getFavoritePublication(): MutableList<Publication> {
-        favoritePublications = publications.filter { it.favorite }.toMutableList()
-        return favoritePublications
+    fun getAdoptedPublication(): MutableList<Publication> {
+        adoptedPublications = publications.filter { it.adopted }.toMutableList()
+        return adoptedPublications
     }
 
     override fun onBindViewHolder(holder: PublicationHolder, position: Int) {
         super.onBindViewHolder(holder, position)
-        val favorite = favoritePublications[position].favorite
+        val adopted = adoptedPublications[position].adopted
 
-        if (favorite == true) {
-            holder.setFavorite(favorite)
+        if (adopted == true) {
+            holder.setFavorite(adopted)
         }
     }
+
 }
