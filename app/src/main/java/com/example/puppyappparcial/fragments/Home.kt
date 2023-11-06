@@ -101,7 +101,10 @@ class Home @Inject constructor(
             "Bs As",
             "https://images.dog.ceo/breeds/bouvier/n02106382_1365.jpg",
             "Juan",
+            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
+            1187996047,
             false,
+            true,
             false
         ))
 
@@ -117,6 +120,9 @@ class Home @Inject constructor(
             "Cordoba",
             "https://images.dog.ceo/breeds/papillon/n02086910_4609.jpg",
             "Maria",
+            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
+            1547789470,
+            false,
             true,
             false
         ))
@@ -133,7 +139,10 @@ class Home @Inject constructor(
             "San Luis",
             "https://images.dog.ceo/breeds/chihuahua/n02085620_13151.jpg",
             "Carlos",
+            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
+            345678909,
             false,
+            true,
             false
         ))
 
@@ -149,6 +158,9 @@ class Home @Inject constructor(
             "Bs As",
             "https://images.dog.ceo/breeds/komondor/n02105505_1657.jpg",
             "Ana",
+            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
+            12345678,
+            false,
             true,
             false
         ))

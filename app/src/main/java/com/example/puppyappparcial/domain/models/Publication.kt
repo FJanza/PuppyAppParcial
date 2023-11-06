@@ -14,11 +14,11 @@ data class Publication(
     val weight:Float,
     val location:String,
     val imgs:String,
-    val owner:String,
+    var owner:String,
     val ownerImgUrl: String,
     val ownerNumber: Int,
     val favorite: Boolean,
-    val adopted: Boolean,
+    var adopted: Boolean,
     val checked: Boolean
 ) fun PublicationEntity.toDomain() = Publication(
     id,

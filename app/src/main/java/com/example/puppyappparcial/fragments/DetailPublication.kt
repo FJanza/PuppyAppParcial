@@ -24,7 +24,7 @@ class DetailPublication : Fragment() {
         age = 10,
         sex = "Macho",
         description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit lacus vel elementum mattis. Quisque vitae bibendum lacus. Suspendisse lacinia, orci egestas efficitur ultrices, risus risus sollicitudin erat, vel tempor ex sem vitae ipsum. Nunc viverra tortor eu felis sollicitudin fermentum. Nullam dictum dapibus nibh et auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent euismod egestas leo efficitur aliquam. Mauris mauris felis, dapibus sed ipsum sed, egestas bibendum orci. Nam mattis tristique est sed tempus. Aliquam et bibendum risus, a pharetra ante. Mauris dictum placerat vestibulum. Donec turpis lacus, cursus et justo sed, dignissim pellentesque mauris. Aliquam nec tellus tristique, congue lacus eget, faucibus nisl.",
-        weigth = 15.10f,
+        weight = 15.10f,
         location = "Buenos Aires",
         imgs = "https://images.dog.ceo/breeds/cockapoo/Guri8.jpg",
         owner = "Matias Gutierrez",
@@ -67,7 +67,7 @@ class DetailPublication : Fragment() {
             ageTextView.text = "${dogInformation?.age}"
             locationTextView.text = "${dogInformation?.location}"
             genderTextView.text = "${dogInformation?.sex}"
-            weightTextView.text = "${dogInformation?.weigth}"
+            weightTextView.text = "${dogInformation?.weight}"
             descriptionTextView.text = "${dogInformation?.description}"
             ownerTextView.text = "${dogInformation?.owner}"
 

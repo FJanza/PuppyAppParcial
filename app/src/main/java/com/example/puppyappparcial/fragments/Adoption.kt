@@ -68,8 +68,11 @@ class Adoption : Fragment(), OnViewItemClickedListener{
             "San Juan",
             "https://images.dog.ceo/breeds/segugio-italian/n02090722_002.jpg",
             "Sofia",
+            "",
+            123123,
             false,
-            true
+            true,
+            false
         ))
 
         publications.add(com.example.puppyappparcial.domain.models.Publication(
@@ -84,8 +87,11 @@ class Adoption : Fragment(), OnViewItemClickedListener{
             "Bs As",
             "https://images.dog.ceo/breeds/sharpei/noel.jpg",
             "Ana",
+            "",
+            123123,
             false,
-            true
+            true,
+            false
         ))
     }
 

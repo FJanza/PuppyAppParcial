@@ -68,7 +68,10 @@ class Favourites : Fragment(), OnViewItemClickedListener {
             "Cordoba",
             "https://images.dog.ceo/breeds/papillon/n02086910_4609.jpg",
             "Maria",
+            "",
+            123123,
             true,
+            false,
             false
         ))
 
@@ -84,7 +87,10 @@ class Favourites : Fragment(), OnViewItemClickedListener {
             "Bs As",
             "https://images.dog.ceo/breeds/komondor/n02105505_1657.jpg",
             "Ana",
+            "",
+            123123,
             true,
+            false,
             false
         ))
     }
