@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,82 +30,107 @@
             android:id="@+id/inputAge"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Edad"
-            android:inputType="number"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/inputLocation"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Ubicación"
-            android:inputType="text"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/inputGender"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Género"
-            android:inputType="text"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/inputWeigth"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Peso"
-            android:inputType="numberDecimal"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/inputDescription"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Descripción"
-            android:inputType="text"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:inputType="text" />
+
         <EditText
-            android:id="@+id/inputBreed"
+            android:id="@+id/inputImageUrl"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:ems="10"
-            android:hint="Raza"
-            android:inputType="text"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Url de la imagen"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/inputImageUrl3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Url de la imagen"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/inputImageUrl2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Url de la imagen"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/buttonUpload"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="Publicar"
             android:layout_marginTop="50dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:text="Publicar" />
 
 
     </LinearLayout>
