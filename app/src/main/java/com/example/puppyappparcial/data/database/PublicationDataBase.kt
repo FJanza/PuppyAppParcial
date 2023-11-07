@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.example.puppyappparcial.data.database.dao.PublicationDao
 import com.example.puppyappparcial.data.database.entities.PublicationEntity
 
-@Database(entities = [PublicationEntity::class], version=3)
+@Database(entities = [PublicationEntity::class], version=7)
 abstract class PublicationDataBase: RoomDatabase() {
     abstract fun getPublicationDao () : PublicationDao
 }

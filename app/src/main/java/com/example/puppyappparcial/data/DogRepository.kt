@@ -26,6 +26,10 @@ class DogRepository @Inject constructor(
         return response.toDomain()
     }
 
+    suspend fun getMaxId(): Int{
+        return publicationDao.getMaxId()
+    }
+
     suspend fun getAllPublicationsFromDataBase(): List<Publication> {
         val response: List<PublicationEntity> = publicationDao.getAllPublications()
         return response.map { it.toDomain() }

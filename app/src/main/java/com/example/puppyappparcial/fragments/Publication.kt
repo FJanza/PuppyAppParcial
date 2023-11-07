@@ -100,6 +100,7 @@ class Publication : Fragment() {
                 }
 
                 val publicationEntity = PublicationEntity(
+                    id = null,
                     breed = inputBreed.text.toString(),
                     subBreed = inputSubBreed.text.toString(),
                     name = inputName.text.toString(),
@@ -113,10 +114,9 @@ class Publication : Fragment() {
                     ownerImgUrl = ownerImgUrl,
                     ownerNumber = ownerNumber,
                     favorite = false,
-                    adopted = false,
+                    adopted = false
                 )
-
-                val scope = CoroutineScope(Dispatchers.IO)
+                var scope = CoroutineScope(Dispatchers.IO)
                 scope.launch {
                     repository.insertPublication(publicationEntity)
                 }
