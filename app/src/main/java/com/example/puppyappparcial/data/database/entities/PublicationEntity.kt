@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "PublicationTable")
 data class PublicationEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id") val id: Int? =0,
+    @ColumnInfo(name = "id") val id: Int?,
     @ColumnInfo(name = "breed") val breed: String?,
     @ColumnInfo(name = "subBreed") val subBreed:String?,
     @ColumnInfo(name = "name") val name:String?,

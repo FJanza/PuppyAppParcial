@@ -30,6 +30,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM3 = "param3"
+
 @AndroidEntryPoint
 class Home : Fragment(), OnViewItemClickedListener, OnQueryTextListener {
 
@@ -38,18 +42,16 @@ class Home : Fragment(), OnViewItemClickedListener, OnQueryTextListener {
     private lateinit var search_bar: SearchView
     @Inject
     lateinit var getBreedsUseCase: GetBreedsUseCase
-    private lateinit var getPublicationUseCase: GetPublicationUseCase
     @Inject
     lateinit var repository: DogRepository
-    private lateinit var p1 : PublicationEntity
-    private lateinit var p2 : PublicationEntity
-    private lateinit var p3 : PublicationEntity
-    private lateinit var p4 : PublicationEntity
+    private var param1: String? = null
+    private var param2: String? = null
+    private var param3: String? = null
+
 
 
     var publications : MutableList<Publication> = ArrayList()
     var auxPublications: MutableList<Publication> = ArrayList()
-    val dogBreeds = mutableListOf<Publication>()
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var publicationAdapter: PublicationAdapter
@@ -84,28 +86,9 @@ class Home : Fragment(), OnViewItemClickedListener, OnQueryTextListener {
         recPerros.layoutManager = linearLayoutManager
         recPerros.adapter = publicationAdapter
 
-        //loadNavGraph()
-
-//        filterNav.setOnClickListener{
-//            val intent = Intent(requireContext(), MainActivity2::class.java)
-//            intent.putExtra("FilterFragment", Filters::class.java)
-//            startActivity(intent)
-////            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-////            val filterFragment = Filters(getBreedsUseCase, getSubBreedUseCase)
-////            fragmentTransaction.replace(R.id.fragment_container, filterFragment)
-////            fragmentTransaction.addToBackStack(null)
-////            fragmentTransaction.commit()
-//            //navigateToMoreFilters()
-//        }
 
     }
 
-//    private fun navigateToMoreFilters() {
-//
-//        view.findNavController().navigate(R.id.action_home_to_filters)
-//
-//
-//    }
 
     override fun onViewItemDetail(publication: com.example.puppyappparcial.domain.models.Publication) {
         val detailPublicationFragment = DetailPublication()
@@ -124,7 +107,7 @@ class Home : Fragment(), OnViewItemClickedListener, OnQueryTextListener {
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
             var dataFromDB = repository.getAllPublicationsFromDataBase()
-            val filteredData = dataFromDB.filter { it.adopted == false && it.favorite == false}
+            val filteredData = dataFromDB.filter { it.adopted == false}
             publications.clear()
             publications.addAll(filteredData)
             auxPublications.addAll(dataFromDB)

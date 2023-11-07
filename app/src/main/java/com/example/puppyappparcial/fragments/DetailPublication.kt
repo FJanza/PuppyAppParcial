@@ -22,7 +22,13 @@ import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.viewpager2.widget.ViewPager2
+import com.example.puppyappparcial.recyclerViewPublications.adapter.ImagePagerAdapter
 
+
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM3 = "param3"
 
 @AndroidEntryPoint
 class DetailPublication  constructor(
@@ -30,10 +36,19 @@ class DetailPublication  constructor(
     var dogInformation: Publication? = null
     @Inject
     lateinit var repository: DogRepository
+    private var param1: String? = null
+    private var param2: String? = null
+    private var param3: String? = null
+    lateinit var ownerName: String
+    lateinit var ownerNumber: String
+    lateinit var ownerImgUrl: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             dogInformation = it.getSerializable("selectedPublication") as? Publication
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+            param3 = it.getString(ARG_PARAM3)
         }
     }
 
@@ -52,9 +67,17 @@ class DetailPublication  constructor(
         val ownerTextView = view.findViewById<TextView>(R.id.ownerTextView)
         val buttonToCall = view?.findViewById<ImageButton>(R.id.buttonToCall)
         val ownerImageView = view.findViewById<ImageView>(R.id.ownerImage)
-        val dogPublicationImage = view.findViewById<ImageView>(R.id.dogPublicationImage)
         val adoptionButton = view.findViewById<Button>(R.id.adoptButton)
+        ownerName = arguments?.getString("nombre").toString()
+        ownerImgUrl = arguments?.getString("imagenUrl").toString()
+        ownerNumber = arguments?.getString("telefono").toString()
 
+        val dogPublicationImage = view.findViewById<ViewPager2>(R.id.dogPublicationImage)
+        val imageUrls = dogInformation?.imgs.toString().split(",")
+        val imageAdapter = ImagePagerAdapter(imageUrls)
+        dogPublicationImage.adapter = imageAdapter
+
+        val favButton = view.findViewById<ImageView>(R.id.favButton)
 
 
         if (dogInformation != null) {
@@ -65,20 +88,12 @@ class DetailPublication  constructor(
             weightTextView.text = "${dogInformation?.weight}"
             descriptionTextView.text = "${dogInformation?.description}"
             ownerTextView.text = "${dogInformation?.owner}"
-
             val imageUrlOwner = dogInformation?.ownerImgUrl
-            val imageUrlDog = dogInformation?.imgs
-
 
             if (imageUrlOwner != null) {
                 Glide.with(requireContext())
                     .load(imageUrlOwner)
                     .into(ownerImageView)
-            }
-            if (imageUrlDog != null) {
-                Glide.with(requireContext())
-                    .load(imageUrlDog)
-                    .into(dogPublicationImage)
             }
         }
 
@@ -92,7 +107,6 @@ class DetailPublication  constructor(
         }
 
         adoptionButton?.setOnClickListener {
-            val ownerName = "test"
 
             val scope = CoroutineScope(Dispatchers.IO)
             scope.launch {
@@ -107,6 +121,26 @@ class DetailPublication  constructor(
 
         } else {
             adoptionButton.visibility = View.VISIBLE
+        }
+
+        if (dogInformation?.favorite == true){
+            favButton.setImageResource(R.drawable.icon_favorite_checked)
+        } else {
+            favButton.setImageResource(R.drawable.icon_favorite_not_checked)
+        }
+
+        favButton?.setOnClickListener{
+            dogInformation?.favorite = !dogInformation?.favorite!!
+            val scope = CoroutineScope(Dispatchers.IO)
+            scope.launch {
+                if (dogInformation?.favorite == true){
+                    favButton.setImageResource(R.drawable.icon_favorite_checked)
+                } else {
+                    favButton.setImageResource(R.drawable.icon_favorite_not_checked)
+                }
+                repository.updateFavourite(dogInformation?.id!!, dogInformation?.favorite!!)
+            }
+            Toast.makeText(requireContext(), "Has añadido a  ${dogInformation?.name} en favoritos", Toast.LENGTH_SHORT).show()
         }
 
         return view

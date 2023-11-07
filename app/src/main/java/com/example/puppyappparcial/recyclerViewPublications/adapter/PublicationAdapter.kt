@@ -36,6 +36,7 @@ open class PublicationAdapter(
             holder.setSubBreed(publication.subBreed!!)
             holder.setAge(publication.age!!)
             holder.setGender(publication.sex!!)
+            holder.setFavIcon(publication.favorite!!)
         }
 
         holder.getCardLayout().setOnClickListener{

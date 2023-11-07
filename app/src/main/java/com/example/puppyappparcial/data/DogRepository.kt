@@ -26,6 +26,10 @@ class DogRepository @Inject constructor(
         return response.toDomain()
     }
 
+    suspend fun getMaxId(): Int{
+        return publicationDao.getMaxId()
+    }
+
     suspend fun getAllPublicationsFromDataBase(): List<Publication> {
         val response: List<PublicationEntity> = publicationDao.getAllPublications()
         return response.map { it.toDomain() }
@@ -42,9 +46,9 @@ class DogRepository @Inject constructor(
     suspend fun updateOwner(id : Int, owner: String) {
         publicationDao.updateOwner(owner, id)
     }
-
-    suspend fun toggleFavorite(id : Int) {
-        publicationDao.toggleFavorite(id)
+    suspend fun updateFavourite(id : Int, favourite: Boolean) {
+        publicationDao.updateFavourite(favourite, id)
     }
+
 
 }

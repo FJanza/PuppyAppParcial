@@ -18,7 +18,8 @@ class PublicationHolder (v: View) : RecyclerView.ViewHolder(v) {
     }
 
     fun bind(image: String){
-        Picasso.get().load(image).into(binding.dogImage)
+        val imageUrls = image.split(",")
+        Picasso.get().load(imageUrls[0]).into(binding.dogImage)
     }
 
     fun setName(name: String){
@@ -46,15 +47,12 @@ class PublicationHolder (v: View) : RecyclerView.ViewHolder(v) {
         txt.text = gender
     }
 
-    fun setFavorite(favorite: Boolean){
-        val checked: ImageView = view.findViewById(R.id.favoriteChecked)
-        val notChecked: ImageView = view.findViewById(R.id.favoriteNotChecked)
-        if (favorite == true){
-            checked.visibility = View.VISIBLE
-            notChecked.visibility = View.GONE
+    fun setFavIcon(favourite: Boolean){
+        val favButton = view.findViewById<ImageView>(R.id.favButtonCheck)
+        if (favourite){
+            favButton.visibility = View.VISIBLE
         } else {
-            notChecked.visibility = View.VISIBLE
-            checked.visibility = View.GONE
+            favButton.visibility = View.GONE
         }
     }
 
