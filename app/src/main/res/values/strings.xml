@@ -3,4 +3,11 @@
     <string name="dog_api_base_url">https://dog.ceo/api/breeds/</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="subir_foto">Subir foto</string>
+    <string name="ingresa_la_url_de_la_imagen">Ingresa la URL de la imagen</string>
+    <string name="profile_image">TODO</string>
+    <string name="nombre">Nombre</string>
+    <string name="Buscador">Buscador</string>
 </resources>

@@ -5,56 +5,83 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.data.DogRepository
+import com.example.puppyappparcial.domain.models.Publication
+import com.example.puppyappparcial.recyclerViewPublications.adapter.AdoptionAdapter
+import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class Adoption : Fragment(), OnViewItemClickedListener{
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Adoption.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Adoption : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var view: View
+    private lateinit var recycleAdoptions: RecyclerView
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var adoptionAdapter: AdoptionAdapter
+    private var publications: MutableList<Publication> = ArrayList()
+    private var adoptedPublications: MutableList<Publication> = ArrayList()
+    @Inject
+    lateinit var repository: DogRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_adoption, container, false)
+        view = inflater.inflate(R.layout.fragment_adoption, container, false)
+
+        recycleAdoptions = view.findViewById(R.id.rec_adoptions)
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Adoption.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Adoption().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onStart() {
+        super.onStart()
+
+        addDefaultPublications()
+
+        //Configuración Obligatoria
+        requireActivity()
+
+        recycleAdoptions.setHasFixedSize(true)
+        linearLayoutManager = LinearLayoutManager(context)
+        adoptionAdapter = AdoptionAdapter(publications, this)
+        adoptedPublications = adoptionAdapter.getAdoptedPublication()
+        adoptionAdapter.publications = adoptedPublications
+
+        recycleAdoptions.layoutManager = linearLayoutManager
+        recycleAdoptions.adapter = adoptionAdapter
     }
+
+    override fun onViewItemDetail(publication: com.example.puppyappparcial.domain.models.Publication) {
+        val detailPublicationFragment = DetailPublication()
+        val args = Bundle()
+        args.putSerializable("selectedPublication", publication)
+        detailPublicationFragment.arguments = args
+
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, detailPublicationFragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+    }
+
+    private fun addDefaultPublications(){
+        val scope = CoroutineScope(Dispatchers.IO)
+        scope.launch {
+            var dataFromDB = repository.getAllPublicationsFromDataBase()
+            val filteredData = dataFromDB.filter { it.adopted == true }
+            publications.clear()
+            publications.addAll(filteredData)
+
+        }
+    }
+
 }
