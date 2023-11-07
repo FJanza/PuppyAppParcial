@@ -127,10 +127,48 @@
             android:paddingLeft="10dp"
             android:textColor="@color/black"
             android:textColorHint="#C9C8C8"
-            app:layout_constraintBottom_toTopOf="@+id/inputImageUrl"
+            app:layout_constraintBottom_toTopOf="@+id/inputBreed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputWeigth" />
+
+        <EditText
+            android:id="@+id/inputBreed"
+            android:layout_width="369dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/radius_form"
+            android:backgroundTint="#F6F6F6"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Raza"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="#C9C8C8"
+            app:layout_constraintBottom_toTopOf="@+id/inputSubBreed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputDescription" />
+
+        <EditText
+            android:id="@+id/inputSubBreed"
+            android:layout_width="369dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/radius_form"
+            android:backgroundTint="#F6F6F6"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Sub Raza"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="#C9C8C8"
+            app:layout_constraintBottom_toTopOf="@+id/inputImageUrl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputBreed" />
 
         <EditText
             android:id="@+id/inputImageUrl"
@@ -150,7 +188,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/inputSubBreed" />
 
         <EditText
             android:id="@+id/inputImageUrl3"
@@ -190,6 +228,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputImageUrl3" />
+
 
         <Button
             android:id="@+id/buttonUpload"
