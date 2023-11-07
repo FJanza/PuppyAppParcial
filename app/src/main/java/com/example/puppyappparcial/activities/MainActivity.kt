@@ -34,9 +34,11 @@ class MainActivity : AppCompatActivity() {
             if (isAllFieldsChecked == true) {
                 val nombre = txtNombre.text.toString()
                 val imagenUrl = txtImagen.text.toString()
+                val telefono = txtNumero.text.toString()
                 val intent = Intent(this, MainActivity2::class.java)
                 intent.putExtra("nombre", nombre)
                 intent.putExtra("imagenUrl", imagenUrl)
+                intent.putExtra("telefono", telefono)
                 startActivity(intent)
                 finish()
             }

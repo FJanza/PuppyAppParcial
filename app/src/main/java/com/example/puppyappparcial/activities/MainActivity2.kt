@@ -55,7 +55,6 @@ class MainActivity2  constructor(
     private lateinit var bottomNavigationButton: BottomAppBar
     private lateinit var actionBackItem: MenuItem
     private lateinit var nombre: String
-    private lateinit var imagenUrl: String
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var navHostFrag: NavHostFragment
     private lateinit var binding: ActivityMain2Binding
@@ -73,12 +72,14 @@ class MainActivity2  constructor(
     private val dogViewModel: DogViewModel by viewModels()
     private var breed: String = ""
     private lateinit var imageUrl: String
+    private lateinit var telefono: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
         nombre = intent.getStringExtra("nombre").toString()
         imageUrl = intent.getStringExtra("imagenUrl").toString()
+        telefono = intent.getStringExtra("telefono").toString()
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -122,7 +123,7 @@ class MainActivity2  constructor(
                 }
                 R.id.publi -> {
                     toolbar.title = "Publicación"
-                    openFragment(Publication())
+                    openFragmentWithArguments(Publication())
                     return@setOnItemSelectedListener true
                 }
                 R.id.fav -> {
@@ -183,10 +184,9 @@ class MainActivity2  constructor(
             "https://images.dog.ceo/breeds/bouvier/n02106382_1365.jpg",
             "Juan",
             "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-            1187996047,
+            "1187996047",
             false,
             false,
-            false
         )
 
         p2 = PublicationEntity(
@@ -202,8 +202,7 @@ class MainActivity2  constructor(
             "https://images.dog.ceo/breeds/papillon/n02086910_4609.jpg",
             "Maria",
             "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-            1547789470,
-            false,
+            "1547789470",
             false,
             false
         )
@@ -221,8 +220,7 @@ class MainActivity2  constructor(
             "https://images.dog.ceo/breeds/chihuahua/n02085620_13151.jpg",
             "Carlos",
             "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-            345678909,
-            false,
+            "345678909",
             false,
             false
         )
@@ -240,8 +238,7 @@ class MainActivity2  constructor(
             "https://images.dog.ceo/breeds/komondor/n02105505_1657.jpg",
             "Ana",
             "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-            12345678,
-            false,
+            "12345678",
             false,
             false
         )
@@ -258,10 +255,9 @@ class MainActivity2  constructor(
             "https://images.dog.ceo/breeds/segugio-italian/n02090722_002.jpg",
             "Sofia",
             "",
-            123123,
+            "123123",
             false,
-            true,
-            false
+            true
         )
 
         p6 = PublicationEntity(
@@ -277,10 +273,9 @@ class MainActivity2  constructor(
             "https://images.dog.ceo/breeds/sharpei/noel.jpg",
             "Ana",
             "",
-            123123,
+            "123123",
             false,
-            true,
-            false
+            true
         )
         p7 = PublicationEntity(
             7,
@@ -295,10 +290,10 @@ class MainActivity2  constructor(
             "https://images.dog.ceo/breeds/australian-shepherd/pepper.jpg",
             "Maria",
             "",
-            123123,
+            "123123",
             true,
             false,
-            false
+
         )
 
         p8 = PublicationEntity(
@@ -314,9 +309,8 @@ class MainActivity2  constructor(
             "https://images.dog.ceo/breeds/keeshond/n02112350_7141.jpg",
             "Ana",
             "",
-            123123,
+            "123123",
             true,
-            false,
             false
         )
 
@@ -382,6 +376,7 @@ class MainActivity2  constructor(
         val bundle = Bundle()
         bundle.putString("nombre", nombre)
         bundle.putString("imagenUrl", imageUrl)
+        bundle.putString("telefono", telefono)
         fragment.arguments = bundle
 
         val transaction = fragmentManager.beginTransaction()

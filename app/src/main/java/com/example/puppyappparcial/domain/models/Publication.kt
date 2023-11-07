@@ -17,10 +17,9 @@ data class Publication(
     val imgs:String?,
     var owner:String?,
     val ownerImgUrl: String?,
-    val ownerNumber: Int?,
+    val ownerNumber: String?,
     val favorite: Boolean?,
     var adopted: Boolean?,
-    val checked: Boolean?
 ) : Serializable
 
 fun PublicationEntity.toDomain() = Publication(
@@ -38,6 +37,5 @@ fun PublicationEntity.toDomain() = Publication(
     ownerImgUrl,
     ownerNumber,
     favorite,
-    adopted,
-    checked
+    adopted
 )
