@@ -22,6 +22,8 @@ import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.viewpager2.widget.ViewPager2
+import com.example.puppyappparcial.recyclerViewPublications.adapter.ImagePagerAdapter
 
 
 private const val ARG_PARAM1 = "param1"
@@ -65,11 +67,15 @@ class DetailPublication  constructor(
         val ownerTextView = view.findViewById<TextView>(R.id.ownerTextView)
         val buttonToCall = view?.findViewById<ImageButton>(R.id.buttonToCall)
         val ownerImageView = view.findViewById<ImageView>(R.id.ownerImage)
-        val dogPublicationImage = view.findViewById<ImageView>(R.id.dogPublicationImage)
         val adoptionButton = view.findViewById<Button>(R.id.adoptButton)
         ownerName = arguments?.getString("nombre").toString()
         ownerImgUrl = arguments?.getString("imagenUrl").toString()
         ownerNumber = arguments?.getString("telefono").toString()
+
+        val dogPublicationImage = view.findViewById<ViewPager2>(R.id.dogPublicationImage)
+        val imageUrls = dogInformation?.imgs.toString().split(",")
+        val imageAdapter = ImagePagerAdapter(imageUrls)
+        dogPublicationImage.adapter = imageAdapter
 
         val favButton = view.findViewById<ImageView>(R.id.favButton)
 
@@ -82,20 +88,12 @@ class DetailPublication  constructor(
             weightTextView.text = "${dogInformation?.weight}"
             descriptionTextView.text = "${dogInformation?.description}"
             ownerTextView.text = "${dogInformation?.owner}"
-
             val imageUrlOwner = dogInformation?.ownerImgUrl
-            var imageUrlDog = dogInformation?.imgs
-
 
             if (imageUrlOwner != null) {
                 Glide.with(requireContext())
                     .load(imageUrlOwner)
                     .into(ownerImageView)
-            }
-            if (imageUrlDog != null) {
-                Glide.with(requireContext())
-                    .load(imageUrlDog)
-                    .into(dogPublicationImage)
             }
         }
 

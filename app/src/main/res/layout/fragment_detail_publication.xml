@@ -238,7 +238,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <ImageView
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/dogPublicationImage"
             android:layout_width="match_parent"
             android:layout_height="350dp" />
