@@ -18,7 +18,7 @@ data class Publication(
     var owner:String?,
     val ownerImgUrl: String?,
     val ownerNumber: String?,
-    val favorite: Boolean?,
+    var favorite: Boolean?,
     var adopted: Boolean?,
 ) : Serializable
 

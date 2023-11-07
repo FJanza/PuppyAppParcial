@@ -19,10 +19,6 @@ class AdoptionAdapter (
         super.onBindViewHolder(holder, position)
         if (position < adoptedPublications.size) {
             val adopted = adoptedPublications[position].adopted
-
-            if (adopted == true) {
-                holder.setFavorite(adopted)
-            }
         }
     }
 
