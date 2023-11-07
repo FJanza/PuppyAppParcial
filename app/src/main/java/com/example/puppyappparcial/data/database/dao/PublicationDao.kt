@@ -5,12 +5,16 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.puppyappparcial.data.database.entities.PublicationEntity
+import com.example.puppyappparcial.domain.models.Breed
 
 
 @Dao
 interface PublicationDao {
     @Query("Select * from PublicationTable")
     suspend fun getAllPublications(): List<PublicationEntity>
+
+    @Query("Select * from PublicationTable where breed = :breed")
+    suspend fun getPublication(breed: String): PublicationEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPublication(publication: PublicationEntity)

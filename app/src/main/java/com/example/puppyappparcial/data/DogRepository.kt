@@ -31,6 +31,10 @@ class DogRepository @Inject constructor(
         return response.map { it.toDomain() }
     }
 
+    suspend fun getPublicationFromDataBase(breed: String): Publication{
+        return publicationDao.getPublication("$breed").toDomain()
+    }
+
     suspend fun insertPublication(publication : PublicationEntity) {
         publicationDao.insertPublication(publication)
     }

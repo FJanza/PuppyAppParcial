@@ -36,10 +36,7 @@ import com.google.android.material.navigation.NavigationView
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity2 @Inject constructor(
-    //private val getBreedsUseCase: GetBreedsUseCase,
-    //private val  getSubBreedUseCase: GetSubBreedUseCase
-): AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity2: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var bottomNavigationView: BottomNavigationView
