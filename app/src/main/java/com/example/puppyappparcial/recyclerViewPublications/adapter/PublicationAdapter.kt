@@ -20,8 +20,8 @@ open class PublicationAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PublicationHolder {
         val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_perro,parent,false)
 
-/*        val txtView = view.findViewById<TextView>(R.id.txtCurso)
-        txtView.setText("Curso")*/
+        /*        val txtView = view.findViewById<TextView>(R.id.txtCurso)
+                txtView.setText("Curso")*/
         return (PublicationHolder(view))
     }
 
@@ -88,4 +88,3 @@ open class PublicationAdapter(
 
 
 }
-
