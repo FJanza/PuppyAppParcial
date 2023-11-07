@@ -11,35 +11,30 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.data.DogRepository
+import com.example.puppyappparcial.data.database.entities.PublicationEntity
 import com.example.puppyappparcial.domain.models.Publication
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class DetailPublication : Fragment() {
-    private var dogInformation: Publication? = Publication(
-        id = 1,
-        breed = "Golden",
-        subBreed =  "",
-        name = "Patroclo",
-        age = 10,
-        sex = "Macho",
-        description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit lacus vel elementum mattis. Quisque vitae bibendum lacus. Suspendisse lacinia, orci egestas efficitur ultrices, risus risus sollicitudin erat, vel tempor ex sem vitae ipsum. Nunc viverra tortor eu felis sollicitudin fermentum. Nullam dictum dapibus nibh et auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent euismod egestas leo efficitur aliquam. Mauris mauris felis, dapibus sed ipsum sed, egestas bibendum orci. Nam mattis tristique est sed tempus. Aliquam et bibendum risus, a pharetra ante. Mauris dictum placerat vestibulum. Donec turpis lacus, cursus et justo sed, dignissim pellentesque mauris. Aliquam nec tellus tristique, congue lacus eget, faucibus nisl.",
-        weight = 15.10f,
-        location = "Buenos Aires",
-        imgs = "https://images.dog.ceo/breeds/cockapoo/Guri8.jpg",
-        owner = "Matias Gutierrez",
-        ownerImgUrl = "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-        ownerNumber = 1137636787,
-        favorite = false,
-        adopted = false,
-        checked = false
-    )
 
+@AndroidEntryPoint
+class DetailPublication  constructor(
+) : Fragment() {
+    var dogInformation: Publication? = null
+    @Inject
+    lateinit var repository: DogRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // arguments?.let {
-        //            selectedDog = it.getSerializable("selectedDog") as? Dog
-        //        }
+        arguments?.let {
+            dogInformation = it.getSerializable("selectedPublication") as? Publication
+        }
     }
 
     override fun onCreateView(
@@ -87,8 +82,6 @@ class DetailPublication : Fragment() {
             }
         }
 
-
-
         buttonToCall?.setOnClickListener {
             val phoneNumber = dogInformation?.ownerNumber.toString()
             if (phoneNumber.isNotEmpty()) {
@@ -99,12 +92,21 @@ class DetailPublication : Fragment() {
         }
 
         adoptionButton?.setOnClickListener {
-            val ownerName = arguments?.getString("nombre")
-            if (!ownerName.isNullOrEmpty()) {
-                dogInformation?.owner = ownerName
-                dogInformation?.adopted = true
+            val ownerName = "test"
 
+            val scope = CoroutineScope(Dispatchers.IO)
+            scope.launch {
+                repository.updateOwner(dogInformation?.id!!, ownerName)
             }
+            Toast.makeText(requireContext(), "Has adoptado a ${dogInformation?.name}", Toast.LENGTH_SHORT).show()
+
+        }
+
+        if (dogInformation?.adopted == true){
+            adoptionButton.visibility = View.GONE
+
+        } else {
+            adoptionButton.visibility = View.VISIBLE
         }
 
         return view

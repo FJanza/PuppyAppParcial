@@ -32,7 +32,7 @@ open class PublicationAdapter(
         if (publication != null){
             holder.bind(publication.imgs!!)
             holder.setName(publication.name!!)
-            holder.setBreed(publication.breed)
+            holder.setBreed(publication.breed!!)
             holder.setSubBreed(publication.subBreed!!)
             holder.setAge(publication.age!!)
             holder.setGender(publication.sex!!)
@@ -55,7 +55,7 @@ open class PublicationAdapter(
                     val filterPattern = constraint.toString().toLowerCase().trim()
 
                     for (publication in publications) {
-                        if (publication.breed.lowercase().contains(filterPattern)){
+                        if (publication.breed!!.lowercase().contains(filterPattern)){
                             filteredList.add(publication)
                         }
                     }

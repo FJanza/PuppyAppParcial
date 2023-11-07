@@ -12,16 +12,19 @@ class FavoriteAdapter(
     var favoritePublications: MutableList<Publication> = ArrayList()
 
     fun getFavoritePublication(): MutableList<Publication> {
-        favoritePublications = publications.filter { it.favorite }.toMutableList()
+        favoritePublications = publications.filter { it.favorite!! }.toMutableList()
         return favoritePublications
     }
 
     override fun onBindViewHolder(holder: PublicationHolder, position: Int) {
         super.onBindViewHolder(holder, position)
-        val favorite = favoritePublications[position].favorite
+        if (position < favoritePublications.size) {
+            val favorite = favoritePublications[position].favorite
 
-        if (favorite == true) {
-            holder.setFavorite(favorite)
+            if (favorite == true) {
+                holder.setFavorite(favorite)
+            }
         }
+
     }
 }

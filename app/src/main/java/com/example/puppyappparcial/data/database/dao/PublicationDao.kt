@@ -15,7 +15,7 @@ interface PublicationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPublication(publication: PublicationEntity)
 
-    @Query("Update PublicationTable set owner = :owner where id = :id")
+    @Query("Update PublicationTable set owner = :owner, adopted = 1 where id = :id")
     suspend fun updateOwner(owner: String, id: Int)
 
     @Query("Update PublicationTable set favorite = not favorite where id = :id")

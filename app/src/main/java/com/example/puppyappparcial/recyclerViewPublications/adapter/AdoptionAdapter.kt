@@ -11,16 +11,18 @@ class AdoptionAdapter (
     var adoptedPublications: MutableList<Publication> = ArrayList()
 
     fun getAdoptedPublication(): MutableList<Publication> {
-        adoptedPublications = publications.filter { it.adopted }.toMutableList()
+        adoptedPublications = publications.filter { it.adopted!! }.toMutableList()
         return adoptedPublications
     }
 
     override fun onBindViewHolder(holder: PublicationHolder, position: Int) {
         super.onBindViewHolder(holder, position)
-        val adopted = adoptedPublications[position].adopted
+        if (position < adoptedPublications.size) {
+            val adopted = adoptedPublications[position].adopted
 
-        if (adopted == true) {
-            holder.setFavorite(adopted)
+            if (adopted == true) {
+                holder.setFavorite(adopted)
+            }
         }
     }
 
