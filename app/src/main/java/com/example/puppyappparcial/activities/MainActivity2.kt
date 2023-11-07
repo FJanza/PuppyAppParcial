@@ -66,7 +66,6 @@ class MainActivity2: AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var p7 : PublicationEntity
     private lateinit var p8 : PublicationEntity
 
-    private val dogViewModel: DogViewModel by viewModels()
     private var breed: String = ""
     private lateinit var imageUrl: String
     private lateinit var telefono: String
