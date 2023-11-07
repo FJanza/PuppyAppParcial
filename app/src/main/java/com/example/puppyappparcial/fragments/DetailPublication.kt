@@ -140,7 +140,12 @@ class DetailPublication  constructor(
                 }
                 repository.updateFavourite(dogInformation?.id!!, dogInformation?.favorite!!)
             }
-            Toast.makeText(requireContext(), "Has añadido a  ${dogInformation?.name} en favoritos", Toast.LENGTH_SHORT).show()
+            if (dogInformation?.favorite == true){
+                Toast.makeText(requireContext(), "Has añadido a ${dogInformation?.name} en favoritos", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Has sacado a ${dogInformation?.name} de favoritos", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         return view
