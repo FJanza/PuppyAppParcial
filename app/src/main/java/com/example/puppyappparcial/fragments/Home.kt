@@ -145,7 +145,7 @@ class Home : Fragment(), OnViewItemClickedListener, OnQueryTextListener {
 //                    dogBreeds.add(databaseBreed)
 //                    publicationAdapter.notifyDataSetChanged()
 
-                val filteredData = auxPublications.filter { it.breed.lowercase() == breed }
+                val filteredData = auxPublications.filter { it.breed?.lowercase() == breed }
                 if (filteredData.isNotEmpty()) {
                     publications.clear()
                     publications.addAll(filteredData)
