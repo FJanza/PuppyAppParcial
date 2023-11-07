@@ -5,22 +5,22 @@ import java.io.Serializable
 
 
 data class Publication(
-    val id : Int,
-    val breed:String,
+    val id : Int?,
+    val breed:String?,
     val subBreed:String?,
-    val name:String,
-    val age: Int,
-    val sex:String,
-    val description:String,
-    val weight:Float,
-    val location:String,
-    val imgs:String,
-    var owner:String,
-    val ownerImgUrl: String,
-    val ownerNumber: Int,
-    val favorite: Boolean,
-    var adopted: Boolean,
-    val checked: Boolean
+    val name:String?,
+    val age: Int?,
+    val sex:String?,
+    val description:String?,
+    val weight:Float?,
+    val location:String?,
+    val imgs:String?,
+    var owner:String?,
+    val ownerImgUrl: String?,
+    val ownerNumber: Int?,
+    val favorite: Boolean?,
+    var adopted: Boolean?,
+    val checked: Boolean?
 ) : Serializable
 
 fun PublicationEntity.toDomain() = Publication(

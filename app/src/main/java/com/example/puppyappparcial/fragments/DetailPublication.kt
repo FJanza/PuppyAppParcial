@@ -11,13 +11,25 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.data.DogRepository
+import com.example.puppyappparcial.data.database.entities.PublicationEntity
 import com.example.puppyappparcial.domain.models.Publication
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class DetailPublication : Fragment() {
+
+@AndroidEntryPoint
+class DetailPublication  constructor(
+) : Fragment() {
     var dogInformation: Publication? = null
-
+    @Inject
+    lateinit var repository: DogRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -82,12 +94,14 @@ class DetailPublication : Fragment() {
         }
 
         adoptionButton?.setOnClickListener {
-            val ownerName = arguments?.getString("nombre")
-            if (!ownerName.isNullOrEmpty()) {
-                dogInformation?.owner = ownerName
-                dogInformation?.adopted = true
+            val ownerName = "test"
 
+            val scope = CoroutineScope(Dispatchers.IO)
+            scope.launch {
+                repository.updateOwner(dogInformation?.id!!, ownerName)
             }
+            Toast.makeText(requireContext(), "Has adoptado a ${dogInformation?.owner}", Toast.LENGTH_SHORT).show()
+
         }
 
         return view

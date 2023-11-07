@@ -12,7 +12,7 @@ class FavoriteAdapter(
     var favoritePublications: MutableList<Publication> = ArrayList()
 
     fun getFavoritePublication(): MutableList<Publication> {
-        favoritePublications = publications.filter { it.favorite }.toMutableList()
+        favoritePublications = publications.filter { it.favorite!! }.toMutableList()
         return favoritePublications
     }
 

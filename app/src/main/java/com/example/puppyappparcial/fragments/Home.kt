@@ -10,26 +10,34 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.data.DogRepository
+import com.example.puppyappparcial.data.database.entities.PublicationEntity
 import com.example.puppyappparcial.domain.models.Publication
 import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
 import com.example.puppyappparcial.recyclerViewPublications.adapter.PublicationAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class Home @Inject constructor(
+class Home  constructor(
     //private val getBreedsUseCase: GetBreedsUseCase,
     //private val  getSubBreedUseCase: GetSubBreedUseCase
 ) : Fragment(), OnViewItemClickedListener {
 
     private lateinit var view: View
     private lateinit var recPerros : RecyclerView
-
     var publications : MutableList<Publication> = ArrayList()
-
     private lateinit var linearLayoutManager: LinearLayoutManager
-
     private lateinit var publicationAdapter: PublicationAdapter
+    @Inject
+    lateinit var repository: DogRepository
+    private lateinit var p1 : PublicationEntity
+    private lateinit var p2 : PublicationEntity
+    private lateinit var p3 : PublicationEntity
+    private lateinit var p4 : PublicationEntity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -90,86 +98,22 @@ class Home @Inject constructor(
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, detailPublicationFragment)
-        fragmentTransaction.addToBackStack(null) // Opcional, agrega a la pila de retroceso si lo deseas
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 
     private fun addDefaultPublications(){
-        publications.add(com.example.puppyappparcial.domain.models.Publication(
-            1,
-            "Bouvier",
-            "",
-            "Rocky",
-            5,
-            "Macho",
-            "Rocky es un bouvier juguetón y enérgico. Le encanta jugar a la pelota.",
-            20F,
-            "Bs As",
-            "https://images.dog.ceo/breeds/bouvier/n02106382_1365.jpg",
-            "Juan",
-            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-            1187996047,
-            false,
-            true,
-            false
-        ))
+        val scope = CoroutineScope(Dispatchers.IO)
+        scope.launch {
+            var dataFromDB = repository.getAllPublicationsFromDataBase()
+            val filteredData = dataFromDB.filter { it.adopted == false }
+            publications.clear()
+            publications.addAll(filteredData)
 
-        publications.add(com.example.puppyappparcial.domain.models.Publication(
-            2,
-            "Papillon",
-            "",
-            "Luna",
-            3,
-            "Hembra",
-            " Luna es una papillon con un pelaje blanco, negro y marron. Disfrutan de jugar afuera.",
-            6F,
-            "Cordoba",
-            "https://images.dog.ceo/breeds/papillon/n02086910_4609.jpg",
-            "Maria",
-            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-            1547789470,
-            false,
-            true,
-            false
-        ))
-
-        publications.add(com.example.puppyappparcial.domain.models.Publication(
-            3,
-            "Chihuahua",
-            "",
-            "Max",
-            8,
-            "Macho",
-            "Max es un perro leal y obediente, aunque, a veces, tiene un temperamento fuerte",
-            3F,
-            "San Luis",
-            "https://images.dog.ceo/breeds/chihuahua/n02085620_13151.jpg",
-            "Carlos",
-            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-            345678909,
-            false,
-            true,
-            false
-        ))
-
-        publications.add(com.example.puppyappparcial.domain.models.Publication(
-            4,
-            "Komondor",
-            "",
-            "Coco",
-            6,
-            "Macho",
-            "Coco es un Komondor con un pelaje suave pero dificil de cuidar. Adora jugar en el parque con otros perros",
-            33F,
-            "Bs As",
-            "https://images.dog.ceo/breeds/komondor/n02105505_1657.jpg",
-            "Ana",
-            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
-            12345678,
-            false,
-            true,
-            false
-        ))
+            requireActivity().runOnUiThread {
+                publicationAdapter.notifyDataSetChanged()
+            }
+        }
     }
 
 

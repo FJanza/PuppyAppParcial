@@ -19,6 +19,8 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.puppyappparcial.R
 import com.example.puppyappparcial.R.font.poppins_bold
+import com.example.puppyappparcial.data.DogRepository
+import com.example.puppyappparcial.data.database.entities.PublicationEntity
 import com.example.puppyappparcial.databinding.ActivityMain2Binding
 import com.example.puppyappparcial.domain.GetBreedsUseCase
 import com.example.puppyappparcial.domain.GetSubBreedUseCase
@@ -33,10 +35,13 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity2 @Inject constructor(
+class MainActivity2  constructor(
     //private val getBreedsUseCase: GetBreedsUseCase,
     //private val  getSubBreedUseCase: GetSubBreedUseCase
 ): AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -54,6 +59,12 @@ class MainActivity2 @Inject constructor(
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var navHostFrag: NavHostFragment
     private lateinit var binding: ActivityMain2Binding
+    @Inject
+    lateinit var repository: DogRepository
+    private lateinit var p1 : PublicationEntity
+    private lateinit var p2 : PublicationEntity
+    private lateinit var p3 : PublicationEntity
+    private lateinit var p4 : PublicationEntity
 
     private val dogViewModel: DogViewModel by viewModels()
     private var breed: String = ""
@@ -155,6 +166,89 @@ class MainActivity2 @Inject constructor(
 //                }
 //            })
 //        })
+        p1 = PublicationEntity(
+            1,
+            "Bouvier",
+            "",
+            "Rocky",
+            5,
+            "Macho",
+            "Rocky es un bouvier juguetón y enérgico. Le encanta jugar a la pelota.",
+            20F,
+            "Bs As",
+            "https://images.dog.ceo/breeds/bouvier/n02106382_1365.jpg",
+            "Juan",
+            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
+            1187996047,
+            false,
+            false,
+            false
+        )
+
+        p2 = PublicationEntity(
+            2,
+            "Papillon",
+            "",
+            "Luna",
+            3,
+            "Hembra",
+            " Luna es una papillon con un pelaje blanco, negro y marron. Disfrutan de jugar afuera.",
+            6F,
+            "Cordoba",
+            "https://images.dog.ceo/breeds/papillon/n02086910_4609.jpg",
+            "Maria",
+            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
+            1547789470,
+            false,
+            false,
+            false
+        )
+
+        p3 = PublicationEntity(
+            3,
+            "Chihuahua",
+            "",
+            "Max",
+            8,
+            "Macho",
+            "Max es un perro leal y obediente, aunque, a veces, tiene un temperamento fuerte",
+            3F,
+            "San Luis",
+            "https://images.dog.ceo/breeds/chihuahua/n02085620_13151.jpg",
+            "Carlos",
+            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
+            345678909,
+            false,
+            false,
+            false
+        )
+
+        p4 = PublicationEntity(
+            4,
+            "Komondor",
+            "",
+            "Coco",
+            6,
+            "Macho",
+            "Coco es un Komondor con un pelaje suave pero dificil de cuidar. Adora jugar en el parque con otros perros",
+            33F,
+            "Bs As",
+            "https://images.dog.ceo/breeds/komondor/n02105505_1657.jpg",
+            "Ana",
+            "https://images.dog.ceo/breeds/retriever-curly/n02099429_121.jpg",
+            12345678,
+            false,
+            false,
+            false
+        )
+        val scope = CoroutineScope(Dispatchers.IO)
+        scope.launch {
+            repository.insertPublication(p1)
+            repository.insertPublication(p2)
+            repository.insertPublication(p3)
+            repository.insertPublication(p4)
+        }
+
 
     }
 

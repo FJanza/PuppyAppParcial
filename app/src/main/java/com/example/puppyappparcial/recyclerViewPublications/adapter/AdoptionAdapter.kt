@@ -11,7 +11,7 @@ class AdoptionAdapter (
     var adoptedPublications: MutableList<Publication> = ArrayList()
 
     fun getAdoptedPublication(): MutableList<Publication> {
-        adoptedPublications = publications.filter { it.adopted }.toMutableList()
+        adoptedPublications = publications.filter { it.adopted!! }.toMutableList()
         return adoptedPublications
     }
 
