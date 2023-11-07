@@ -21,9 +21,6 @@ class FavoriteAdapter(
         if (position < favoritePublications.size) {
             val favorite = favoritePublications[position].favorite
 
-            if (favorite == true) {
-                holder.setFavorite(favorite)
-            }
         }
 
     }

@@ -161,21 +161,11 @@
             app:layout_constraintVertical_bias="0.511" />
 
         <ImageView
-            android:id="@+id/favoriteNotChecked"
-            android:layout_width="29dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toStartOf="@+id/favoriteChecked"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_favorite_not_checked" />
-
-        <ImageView
-            android:id="@+id/favoriteChecked"
-            android:layout_width="29dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
+            android:id="@+id/favButtonCheck"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="44dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/icon_favorite_checked" />
