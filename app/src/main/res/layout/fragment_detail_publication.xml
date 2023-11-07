@@ -242,5 +242,13 @@
             android:id="@+id/dogPublicationImage"
             android:layout_width="match_parent"
             android:layout_height="350dp" />
+
+        <ImageView
+            android:id="@+id/favButton"
+            android:layout_width="42dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="340dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/icon_favorite_checked" />
     </FrameLayout>
 </ScrollView>

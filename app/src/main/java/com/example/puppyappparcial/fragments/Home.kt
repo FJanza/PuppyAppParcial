@@ -107,7 +107,7 @@ class Home : Fragment(), OnViewItemClickedListener, OnQueryTextListener {
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
             var dataFromDB = repository.getAllPublicationsFromDataBase()
-            val filteredData = dataFromDB.filter { it.adopted == false && it.favorite == false}
+            val filteredData = dataFromDB.filter { it.adopted == false}
             publications.clear()
             publications.addAll(filteredData)
             auxPublications.addAll(dataFromDB)

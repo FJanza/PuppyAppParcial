@@ -71,6 +71,7 @@ class DetailPublication  constructor(
         ownerImgUrl = arguments?.getString("imagenUrl").toString()
         ownerNumber = arguments?.getString("telefono").toString()
 
+        val favButton = view.findViewById<ImageView>(R.id.favButton)
 
 
         if (dogInformation != null) {
@@ -122,6 +123,26 @@ class DetailPublication  constructor(
 
         } else {
             adoptionButton.visibility = View.VISIBLE
+        }
+
+        if (dogInformation?.favorite == true){
+            favButton.setImageResource(R.drawable.icon_favorite_checked)
+        } else {
+            favButton.setImageResource(R.drawable.icon_favorite_not_checked)
+        }
+
+        favButton?.setOnClickListener{
+            dogInformation?.favorite = !dogInformation?.favorite!!
+            val scope = CoroutineScope(Dispatchers.IO)
+            scope.launch {
+                if (dogInformation?.favorite == true){
+                    favButton.setImageResource(R.drawable.icon_favorite_checked)
+                } else {
+                    favButton.setImageResource(R.drawable.icon_favorite_not_checked)
+                }
+                repository.updateFavourite(dogInformation?.id!!, dogInformation?.favorite!!)
+            }
+            Toast.makeText(requireContext(), "Has añadido a  ${dogInformation?.name} en favoritos", Toast.LENGTH_SHORT).show()
         }
 
         return view
