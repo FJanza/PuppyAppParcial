@@ -18,10 +18,13 @@ class FavoriteAdapter(
 
     override fun onBindViewHolder(holder: PublicationHolder, position: Int) {
         super.onBindViewHolder(holder, position)
-        val favorite = favoritePublications[position].favorite
+        if (position < favoritePublications.size) {
+            val favorite = favoritePublications[position].favorite
 
-        if (favorite == true) {
-            holder.setFavorite(favorite)
+            if (favorite == true) {
+                holder.setFavorite(favorite)
+            }
         }
+
     }
 }

@@ -17,10 +17,12 @@ class AdoptionAdapter (
 
     override fun onBindViewHolder(holder: PublicationHolder, position: Int) {
         super.onBindViewHolder(holder, position)
-        val adopted = adoptedPublications[position].adopted
+        if (position < adoptedPublications.size) {
+            val adopted = adoptedPublications[position].adopted
 
-        if (adopted == true) {
-            holder.setFavorite(adopted)
+            if (adopted == true) {
+                holder.setFavorite(adopted)
+            }
         }
     }
 

@@ -82,8 +82,6 @@ class DetailPublication  constructor(
             }
         }
 
-
-
         buttonToCall?.setOnClickListener {
             val phoneNumber = dogInformation?.ownerNumber.toString()
             if (phoneNumber.isNotEmpty()) {
@@ -100,8 +98,15 @@ class DetailPublication  constructor(
             scope.launch {
                 repository.updateOwner(dogInformation?.id!!, ownerName)
             }
-            Toast.makeText(requireContext(), "Has adoptado a ${dogInformation?.owner}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Has adoptado a ${dogInformation?.name}", Toast.LENGTH_SHORT).show()
 
+        }
+
+        if (dogInformation?.adopted == true){
+            adoptionButton.visibility = View.GONE
+
+        } else {
+            adoptionButton.visibility = View.VISIBLE
         }
 
         return view

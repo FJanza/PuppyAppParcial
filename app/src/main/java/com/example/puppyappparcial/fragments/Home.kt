@@ -34,10 +34,6 @@ class Home  constructor(
     private lateinit var publicationAdapter: PublicationAdapter
     @Inject
     lateinit var repository: DogRepository
-    private lateinit var p1 : PublicationEntity
-    private lateinit var p2 : PublicationEntity
-    private lateinit var p3 : PublicationEntity
-    private lateinit var p4 : PublicationEntity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -106,7 +102,7 @@ class Home  constructor(
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
             var dataFromDB = repository.getAllPublicationsFromDataBase()
-            val filteredData = dataFromDB.filter { it.adopted == false }
+            val filteredData = dataFromDB.filter { it.adopted == false && it.favorite == false}
             publications.clear()
             publications.addAll(filteredData)
 

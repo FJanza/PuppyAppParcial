@@ -9,10 +9,17 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.data.DogRepository
 import com.example.puppyappparcial.domain.models.Publication
 import com.example.puppyappparcial.recyclerViewPublications.adapter.AdoptionAdapter
 import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class Adoption : Fragment(), OnViewItemClickedListener{
 
     private lateinit var view: View
@@ -21,6 +28,8 @@ class Adoption : Fragment(), OnViewItemClickedListener{
     private lateinit var adoptionAdapter: AdoptionAdapter
     private var publications: MutableList<Publication> = ArrayList()
     private var adoptedPublications: MutableList<Publication> = ArrayList()
+    @Inject
+    lateinit var repository: DogRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,48 +60,28 @@ class Adoption : Fragment(), OnViewItemClickedListener{
         recycleAdoptions.adapter = adoptionAdapter
     }
 
-    override fun onViewItemDetail(publication: Publication) {
-        Toast.makeText(context, "Adopciones", Toast.LENGTH_SHORT).show()
+    override fun onViewItemDetail(publication: com.example.puppyappparcial.domain.models.Publication) {
+        val detailPublicationFragment = DetailPublication()
+        val args = Bundle()
+        args.putSerializable("selectedPublication", publication)
+        detailPublicationFragment.arguments = args
+
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, detailPublicationFragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
     private fun addDefaultPublications(){
-        publications.add(com.example.puppyappparcial.domain.models.Publication(
-            5,
-            "Segugio",
-            "Italian",
-            "Bella",
-            8,
-            "Hembra",
-            "Le encanta pasear y jugar en el parque",
-            12F,
-            "San Juan",
-            "https://images.dog.ceo/breeds/segugio-italian/n02090722_002.jpg",
-            "Sofia",
-            "",
-            123123,
-            false,
-            true,
-            false
-        ))
+        val scope = CoroutineScope(Dispatchers.IO)
+        scope.launch {
+            var dataFromDB = repository.getAllPublicationsFromDataBase()
+            val filteredData = dataFromDB.filter { it.adopted == true }
+            publications.clear()
+            publications.addAll(filteredData)
 
-        publications.add(com.example.puppyappparcial.domain.models.Publication(
-            6,
-            "Sharpei",
-            "",
-            "Buddy",
-            10,
-            "Macho",
-            "Buddy es un sharpei amigable y juguetón que siempre tiene la cola en movimiento.",
-            33F,
-            "Bs As",
-            "https://images.dog.ceo/breeds/sharpei/noel.jpg",
-            "Ana",
-            "",
-            123123,
-            false,
-            true,
-            false
-        ))
+        }
     }
 
 }

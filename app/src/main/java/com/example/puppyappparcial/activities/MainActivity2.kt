@@ -65,6 +65,10 @@ class MainActivity2  constructor(
     private lateinit var p2 : PublicationEntity
     private lateinit var p3 : PublicationEntity
     private lateinit var p4 : PublicationEntity
+    private lateinit var p5 : PublicationEntity
+    private lateinit var p6 : PublicationEntity
+    private lateinit var p7 : PublicationEntity
+    private lateinit var p8 : PublicationEntity
 
     private val dogViewModel: DogViewModel by viewModels()
     private var breed: String = ""
@@ -241,12 +245,91 @@ class MainActivity2  constructor(
             false,
             false
         )
+        p5 = PublicationEntity(
+            5,
+            "Segugio",
+            "Italian",
+            "Bella",
+            8,
+            "Hembra",
+            "Le encanta pasear y jugar en el parque",
+            12F,
+            "San Juan",
+            "https://images.dog.ceo/breeds/segugio-italian/n02090722_002.jpg",
+            "Sofia",
+            "",
+            123123,
+            false,
+            true,
+            false
+        )
+
+        p6 = PublicationEntity(
+            6,
+            "Sharpei",
+            "",
+            "Buddy",
+            10,
+            "Macho",
+            "Buddy es un sharpei amigable y juguetón que siempre tiene la cola en movimiento.",
+            33F,
+            "Bs As",
+            "https://images.dog.ceo/breeds/sharpei/noel.jpg",
+            "Ana",
+            "",
+            123123,
+            false,
+            true,
+            false
+        )
+        p7 = PublicationEntity(
+            7,
+            "Papillon",
+            "",
+            "Luna",
+            3,
+            "Hembra",
+            " Luna es una papillon con un pelaje blanco, negro y marron. Disfrutan de jugar afuera.",
+            6F,
+            "Cordoba",
+            "https://images.dog.ceo/breeds/australian-shepherd/pepper.jpg",
+            "Maria",
+            "",
+            123123,
+            true,
+            false,
+            false
+        )
+
+        p8 = PublicationEntity(
+            8,
+            "Komondor",
+            "",
+            "Coco",
+            6,
+            "Macho",
+            "Coco es un Komondor con un pelaje suave pero dificil de cuidar. Adora jugar en el parque con otros perros",
+            33F,
+            "Bs As",
+            "https://images.dog.ceo/breeds/keeshond/n02112350_7141.jpg",
+            "Ana",
+            "",
+            123123,
+            true,
+            false,
+            false
+        )
+
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
             repository.insertPublication(p1)
             repository.insertPublication(p2)
             repository.insertPublication(p3)
             repository.insertPublication(p4)
+            repository.insertPublication(p5)
+            repository.insertPublication(p6)
+            repository.insertPublication(p7)
+            repository.insertPublication(p8)
         }
 
 

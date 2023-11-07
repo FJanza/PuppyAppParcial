@@ -9,10 +9,17 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puppyappparcial.R
+import com.example.puppyappparcial.data.DogRepository
 import com.example.puppyappparcial.domain.models.Publication
 import com.example.puppyappparcial.recyclerViewPublications.adapter.FavoriteAdapter
 import com.example.puppyappparcial.recyclerViewPublications.listener.OnViewItemClickedListener
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class Favourites : Fragment(), OnViewItemClickedListener {
 
     private lateinit var view: View
@@ -21,6 +28,8 @@ class Favourites : Fragment(), OnViewItemClickedListener {
     private lateinit var favoriteAdapter: FavoriteAdapter
     private var publications: MutableList<Publication> = ArrayList()
     private var favoritePublications: MutableList<Publication> = ArrayList()
+    @Inject
+    lateinit var repository: DogRepository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,47 +60,27 @@ class Favourites : Fragment(), OnViewItemClickedListener {
         recycleFavourites.adapter = favoriteAdapter
     }
 
-    override fun onViewItemDetail(publication: Publication) {
-        Toast.makeText(context, "Favoritos", Toast.LENGTH_SHORT).show()
+    override fun onViewItemDetail(publication: com.example.puppyappparcial.domain.models.Publication) {
+        val detailPublicationFragment = DetailPublication()
+        val args = Bundle()
+        args.putSerializable("selectedPublication", publication)
+        detailPublicationFragment.arguments = args
+
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, detailPublicationFragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
     private fun addDefaultPublications(){
-        publications.add(com.example.puppyappparcial.domain.models.Publication(
-            2,
-            "Papillon",
-            "",
-            "Luna",
-            3,
-            "Hembra",
-            " Luna es una papillon con un pelaje blanco, negro y marron. Disfrutan de jugar afuera.",
-            6F,
-            "Cordoba",
-            "https://images.dog.ceo/breeds/papillon/n02086910_4609.jpg",
-            "Maria",
-            "",
-            123123,
-            true,
-            false,
-            false
-        ))
+        val scope = CoroutineScope(Dispatchers.IO)
+        scope.launch {
+            var dataFromDB = repository.getAllPublicationsFromDataBase()
+            val filteredData = dataFromDB.filter { it.adopted == false && it.favorite == true }
+            publications.clear()
+            publications.addAll(filteredData)
 
-        publications.add(com.example.puppyappparcial.domain.models.Publication(
-            4,
-            "Komondor",
-            "",
-            "Coco",
-            6,
-            "Macho",
-            "Coco es un Komondor con un pelaje suave pero dificil de cuidar. Adora jugar en el parque con otros perros",
-            33F,
-            "Bs As",
-            "https://images.dog.ceo/breeds/komondor/n02105505_1657.jpg",
-            "Ana",
-            "",
-            123123,
-            true,
-            false,
-            false
-        ))
+        }
     }
 }
