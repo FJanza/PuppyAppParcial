@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/Buscador"
+            android:id="@+id/search_bar"
             android:layout_width="271dp"
             android:layout_height="48dp"
             android:background="@drawable/radius_form"
