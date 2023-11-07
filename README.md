@@ -2,7 +2,7 @@
 
 Parcial TP3, Belgrano, curso B
 
-##Integrantes:
+## Integrantes:
 
 juanngonzalez = Juan Gonzalez
 
