@@ -48,6 +48,7 @@ class Publication : Fragment() {
     private var param2: String? = null
     private var param3: String? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -79,9 +80,24 @@ class Publication : Fragment() {
         ownerImgUrl = arguments?.getString("imagenUrl").toString()
         ownerNumber = arguments?.getString("telefono").toString()
 
+        var allImages = StringBuilder()
+
+
         buttonUpload.setOnClickListener {
             isAllFieldsChecked = checkAllFields()
-            if (isAllFieldsChecked == true) {
+            if (isAllFieldsChecked) {
+
+                if (inputImageUrl.text.isNotEmpty()) {
+                    allImages.append(inputImageUrl.text)
+                }
+                if (inputImageUrl2.text.isNotEmpty()) {
+                    allImages.append(",")
+                    allImages.append(inputImageUrl2.text)
+                }
+                if (inputImageUrl3.text.isNotEmpty()) {
+                    allImages.append(",")
+                    allImages.append(inputImageUrl3.text)
+                }
 
                 val publicationEntity = PublicationEntity(
                     breed = inputBreed.text.toString(),
@@ -92,7 +108,7 @@ class Publication : Fragment() {
                     description = inputDescription.text.toString(),
                     weigth = parseFloat(inputWeigth.text.toString()),
                     location = inputLocation.text.toString(),
-                    imgs = inputImageUrl.text.toString(),
+                    imgs = allImages.toString(),
                     owner = ownerName,
                     ownerImgUrl = ownerImgUrl,
                     ownerNumber = ownerNumber,

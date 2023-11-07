@@ -110,12 +110,12 @@ class MainActivity2: AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             when (item.itemId) {
                 R.id.home -> {
                     toolbar.title = ""
-                    openFragment(Home())
+                    openFragmentWithArguments(Home())
                     return@setOnItemSelectedListener true
                 }
                 R.id.adoption -> {
                     toolbar.title = "Adopciones"
-                    openFragment(Adoption())
+                    openFragmentWithArguments(Adoption())
                     return@setOnItemSelectedListener true
                 }
                 R.id.publi -> {
@@ -125,7 +125,7 @@ class MainActivity2: AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 R.id.fav -> {
                     toolbar.title = "Mis Favoritos"
-                    openFragment(Favourites())
+                    openFragmentWithArguments(Favourites())
                     return@setOnItemSelectedListener true
                 }
                 else -> {
@@ -135,39 +135,8 @@ class MainActivity2: AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         fragmentManager = supportFragmentManager
-        openFragment(Home())//getBreedsUseCase, getSubBreedUseCase))
+        openFragmentWithArguments(Home())
 
-//        val homeToFilters = intent.getStringExtra("FilterFragment")
-//
-//        if (homeToFilters != null){
-//            val frag = Class.forName(homeToFilters).newInstance() as Fragment
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.fragment_container, frag)
-//                .commit()
-//        }
-
-        //setupBottomNav()
-
-        //dogViewModel.onCreate()
-
-//        dogViewModel.dogModel.observe(this, Observer {
-//            binding.breedName.text = it.message.random()
-//
-//            breed = binding.breedName.text as String
-//
-//            dogViewModel.getSubBreed(breed)
-//            dogViewModel.subBreedModel.observe(this, Observer {
-//                if (!it.message.isNullOrEmpty()) {
-//                    for (i in 0 .. it.message.size - 1){
-//                        val subRazaActual = binding.subBreed.text
-//                        val nuevoSubRaza = if (subRazaActual.isEmpty()) it.message[i]
-//                        else "$subRazaActual\n${it.message[i]}"
-//
-//                        binding.subBreed.text = nuevoSubRaza
-//                    }
-//                }
-//            })
-//        })
         p1 = PublicationEntity(
             1,
             "Bouvier",
@@ -348,25 +317,19 @@ class MainActivity2: AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else if (itemId == R.id.config) {
             toolbar.title = "Configuracion"
             bottomNavigationButton.visibility = View.GONE
-            openFragment(Config())
+            openFragmentWithArguments(Config())
 
             // Oculta el elemento de retroceso
         } else if (itemId == R.id.action_back) {
             toolbar.title = ""
             bottomNavigationButton.visibility = View.VISIBLE
-            openFragment(Home())//getBreedsUseCase, getSubBreedUseCase))
+            openFragmentWithArguments(Home())
             bottomNavigationView.selectedItemId = R.id.home
             drawerLayout.closeDrawer(GravityCompat.START)
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
-    }
-
-    private fun openFragment(fragment: Fragment) {
-         transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.commit()
     }
 
     private fun openFragmentWithArguments(fragment: Fragment) {

@@ -18,7 +18,8 @@ class PublicationHolder (v: View) : RecyclerView.ViewHolder(v) {
     }
 
     fun bind(image: String){
-        Picasso.get().load(image).into(binding.dogImage)
+        val imageUrls = image.split(",")
+        Picasso.get().load(imageUrls[0]).into(binding.dogImage)
     }
 
     fun setName(name: String){
